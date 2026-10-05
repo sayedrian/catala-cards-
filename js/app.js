@@ -2,7 +2,7 @@ import { review, preview, isLearned } from './fsrs.js';
 import * as store from './store.js';
 import {
   TENSE_LABELS, PERSONS, IMP_PERSONS, buildItems, cardsFor, buildQueue, stats,
-  itemStatus, weakest, hasMeaning, deckOf,
+  itemStatus, weakest, hasMeaning, deckOf, prioritize,
 } from './deck.js';
 import { speak, hasCatalanVoice, canRecord, startRecording, stopRecording, isRecording, play } from './audio.js';
 import { suggest } from './translate.js';
@@ -88,6 +88,7 @@ function endSession() {
   $('#done').hidden = false;
   $('#doneInfo').textContent = `${n} cards reviewed. ` + (n ? 'Bona feina!' : '');
   store.save(state);
+  store.flush();
 }
 
 function nextCard() {
@@ -209,6 +210,7 @@ function rate(g) {
   session.done++;
   if (p.state !== 'review') session.pending.push(c);
   store.save(state);
+  store.flush();   // save every answer at once
   nextCard();
 }
 document.querySelectorAll('.rate').forEach(b => b.onclick = () => rate(+b.dataset.g));
@@ -241,7 +243,7 @@ $('#addForm').onsubmit = e => {
   const type = f.type.value;
   const existing = items.find(it => bare(it.ca) === bare(ca) && (type === 'verb') === (it.type === 'verb'));
   if (existing) {
-    state.priority[existing.id] = Date.now();
+    prioritize(existing, state);
     store.save(state);
     $('#addMsg').textContent = `"${existing.ca}" is already in your cards: moved to the top of your study queue.`;
     f.reset();
@@ -334,7 +336,7 @@ function openDetail(id) {
     const a = e.target.dataset && e.target.dataset.a;
     if (e.target === d || a === 'close') return d.close();
     if (a === 'speak') speak(it.ex ? `${it.ca}. ${it.ex}` : it.ca, state.settings.rate);
-    if (a === 'priority') { state.priority[id] = Date.now(); done('Moved to the top of your study queue.'); }
+    if (a === 'priority') { prioritize(it, state); done('Moved to the top of your study queue.'); }
     if (a === 'known') {
       const now = Date.now();
       for (const c of cardsFor(it, state.settings.tenses)) {
@@ -469,6 +471,10 @@ $('#importFile').onchange = async e => {
   }
   e.target.value = '';
 };
+
+// Save at once when the app goes to the background or closes (phones kill apps without warning).
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') store.flush(); });
+window.addEventListener('pagehide', () => store.flush());
 
 // ---------- start ----------
 async function init() {

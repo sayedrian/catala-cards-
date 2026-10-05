@@ -22,11 +22,14 @@ export function emptyState() {
   };
 }
 
+// One connection, kept open: a save on app close must start its transaction without waiting.
+let conn = null;
 function open() {
+  if (conn) return Promise.resolve(conn);
   return new Promise((res, rej) => {
     const r = indexedDB.open(DB, 1);
     r.onupgradeneeded = () => r.result.createObjectStore('kv');
-    r.onsuccess = () => res(r.result);
+    r.onsuccess = () => { conn = r.result; conn.onclose = () => { conn = null; }; res(conn); };
     r.onerror = () => rej(r.error);
   });
 }
@@ -48,15 +51,24 @@ export async function load() {
   }
 }
 
-let timer = null;
+let timer = null, pending = null;
 export function save(state) {
   clearTimeout(timer);
-  timer = setTimeout(() => saveNow(state), 300);
+  pending = state;
+  timer = setTimeout(flush, 300);
+}
+
+// Write a waiting save at once (app hidden, closed, or session ended).
+export function flush() {
+  clearTimeout(timer);
+  const s = pending;
+  pending = null;
+  return s ? saveNow(s) : Promise.resolve();
 }
 
 export async function saveNow(state) {
   try {
-    const db = await open();
+    const db = conn || await open();
     await new Promise((res, rej) => {
       const t = db.transaction('kv', 'readwrite');
       t.objectStore('kv').put(JSON.parse(JSON.stringify(state)), KEY);

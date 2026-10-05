@@ -58,14 +58,18 @@ function newRank(it, state) {
 }
 
 // Builds today's session: due cards (weakest first), then new cards up to the daily limit.
+// Each item's "? → Català" card only comes after its "Català → ?" card has been learned once.
 export function buildQueue(items, state, filter, now = Date.now()) {
   const due = [], fresh = [];
   for (const it of items) {
     for (const c of cardsFor(it, state.settings.tenses)) {
       if (!matchesFilter(c, filter)) continue;
       const p = state.progress[c.id];
-      if (!p) fresh.push(c);
-      else if (p.due <= now || (state.priority[it.id] && !isLearned(p))) due.push(c);
+      if (!p) {
+        // "? → Català" unlocks once "Català → ?" has passed its learning steps (recognise first, then produce)
+        if (c.kind === 'r' && (state.progress[it.id + '|f'] || {}).state !== 'review') continue;
+        fresh.push(c);
+      } else if (p.due <= now) due.push(c);
     }
   }
   due.sort((a, b) => {
@@ -73,13 +77,24 @@ export function buildQueue(items, state, filter, now = Date.now()) {
     if (pa !== pb) return pb - pa;
     return retrievability(state.progress[a.id], now) - retrievability(state.progress[b.id], now);
   });
-  fresh.sort((a, b) => newRank(a.item, state) - newRank(b.item, state) || (a.kind === 'r') - (b.kind === 'r'));
+  // New cards: priority words, then unlocked "? → Català" cards, then the next new words.
+  const group = c => (state.priority[c.item.id] ? 0 : c.kind === 'r' ? 1 : 2);
+  fresh.sort((a, b) => group(a) - group(b) || newRank(a.item, state) - newRank(b.item, state));
 
   const left = Math.max(0, state.settings.newPerDay - state.daily.newSeen);
   // Priority words always come in, even past the daily limit.
   const pri = fresh.filter(c => state.priority[c.item.id]);
   const rest = fresh.filter(c => !state.priority[c.item.id]).slice(0, Math.max(0, left - pri.length));
   return { due, fresh: pri.concat(rest) };
+}
+
+// "Study first": mark the item priority and make its cards I've already seen due now.
+export function prioritize(it, state, now = Date.now()) {
+  state.priority[it.id] = now;
+  for (const c of cardsFor(it, state.settings.tenses)) {
+    const p = state.progress[c.id];
+    if (p && p.due > now) state.progress[c.id] = { ...p, due: now };
+  }
 }
 
 export function stats(items, state, now = Date.now()) {
@@ -106,7 +121,7 @@ export function itemStatus(it, state) {
   return 'learning';
 }
 
-// For printing: weakest studied cards first (low recall chance, many lapses), then priority/new words.
+// For printing: weakest studied cards first, then priority/new words.
 export function weakest(items, state, n, filter, now = Date.now()) {
   const scored = [];
   for (const it of items) {
@@ -118,7 +133,10 @@ export function weakest(items, state, n, filter, now = Date.now()) {
     const studied = [pf, pr].filter(Boolean);
     let score;
     if (studied.length) {
-      score = Math.min(...studied.map(p => retrievability(p, now))) - 0.1 * studied.reduce((a, p) => a + p.lapses, 0);
+      // low recall chance, many lapses and high difficulty (e.g. failed today) = weak
+      score = Math.min(...studied.map(p => retrievability(p, now)))
+        - 0.1 * studied.reduce((a, p) => a + p.lapses, 0)
+        - 0.03 * Math.max(...studied.map(p => p.d || 5));
     } else {
       score = state.priority[it.id] ? 0.5 : 2 + newRank(it, state) / 1e4;
     }

@@ -1,5 +1,5 @@
 // Offline support: serve from cache, refresh the cache in the background.
-const CACHE = 'catala-cards-v1';
+const CACHE = 'catala-cards-v2';
 const SHELL = ['./', 'index.html', 'style.css', 'manifest.webmanifest', 'data/cards.json',
   'js/app.js', 'js/fsrs.js', 'js/store.js', 'js/deck.js', 'js/audio.js', 'js/translate.js',
   'icons/icon-192.png', 'icons/icon-512.png'];
