@@ -1,0 +1,128 @@
+// Items (words, verbs, expressions) -> cards, and the daily study queue.
+import { retrievability, isLearned } from './fsrs.js';
+
+export const TENSE_LABELS = {
+  present: 'Present', perfet: 'Perfet', imperfet: 'Imperfet', perifrastic: 'Passat perifràstic',
+  futur: 'Futur', condicional: 'Condicional', subjuntiu: 'Present de subjuntiu', imperatiu: 'Imperatiu',
+};
+export const PERSONS = ['jo', 'tu', 'ell / ella / vostè', 'nosaltres', 'vosaltres', 'ells / elles / vostès'];
+export const IMP_PERSONS = ['(tu)', '(vostè)', '(nosaltres)', '(vosaltres)', '(vostès)'];
+
+export const hasMeaning = it => !!(it.es || it.en || it.ar);
+
+// Merge the sheet deck with my additions, edits and removals.
+export function buildItems(deck, state) {
+  const hidden = new Set(state.hidden);
+  const items = deck.items
+    .filter(it => !hidden.has(it.id))
+    .map(it => (state.edits[it.id] ? { ...it, ...state.edits[it.id] } : it));
+  return items.concat(Object.values(state.added));
+}
+
+// Every item gives 2 meaning cards (Catalan -> translations, translations -> Catalan);
+// verbs also give one conjugation-table card per chosen tense.
+export function cardsFor(it, tenses) {
+  const out = [];
+  if (hasMeaning(it)) {
+    out.push({ id: it.id + '|f', item: it, kind: 'f' });
+    out.push({ id: it.id + '|r', item: it, kind: 'r' });
+  }
+  if (it.conj) {
+    for (const t of tenses) if (it.conj[t]) out.push({ id: `${it.id}|c|${t}`, item: it, kind: 'c', tense: t });
+  }
+  return out;
+}
+
+export function deckOf(it) {
+  return it.type === 'verb' ? 'verbs' : it.type === 'expr' ? 'expr' : 'words';
+}
+
+export function matchesFilter(card, f) {
+  const it = card.item;
+  if (f.deck === 'conj' && card.kind !== 'c') return false;
+  if (f.deck !== 'all' && f.deck !== 'conj' && (card.kind === 'c' || deckOf(it) !== f.deck)) return false;
+  if (f.tag && !(it.tags || []).includes(f.tag) && it.unit !== f.tag) return false;
+  return true;
+}
+
+function newRank(it, state) {
+  // Lower = sooner. Priority words first (newest first), then CPNL course words,
+  // then exam-focus words, then by sheet unit.
+  const p = state.priority[it.id];
+  if (p) return -p;
+  const tags = it.tags || [];
+  const cp = tags.find(t => t.startsWith('cpnl:'));
+  if (cp) return 1e3 + Number(cp.slice(6));
+  if (tags.some(t => t.startsWith('exam:'))) return 2e3;
+  return 3e3 + (parseInt((it.unit || 'U99').slice(1), 10) || 99);
+}
+
+// Builds today's session: due cards (weakest first), then new cards up to the daily limit.
+export function buildQueue(items, state, filter, now = Date.now()) {
+  const due = [], fresh = [];
+  for (const it of items) {
+    for (const c of cardsFor(it, state.settings.tenses)) {
+      if (!matchesFilter(c, filter)) continue;
+      const p = state.progress[c.id];
+      if (!p) fresh.push(c);
+      else if (p.due <= now || (state.priority[it.id] && !isLearned(p))) due.push(c);
+    }
+  }
+  due.sort((a, b) => {
+    const pa = state.priority[a.item.id] || 0, pb = state.priority[b.item.id] || 0;
+    if (pa !== pb) return pb - pa;
+    return retrievability(state.progress[a.id], now) - retrievability(state.progress[b.id], now);
+  });
+  fresh.sort((a, b) => newRank(a.item, state) - newRank(b.item, state) || (a.kind === 'r') - (b.kind === 'r'));
+
+  const left = Math.max(0, state.settings.newPerDay - state.daily.newSeen);
+  // Priority words always come in, even past the daily limit.
+  const pri = fresh.filter(c => state.priority[c.item.id]);
+  const rest = fresh.filter(c => !state.priority[c.item.id]).slice(0, Math.max(0, left - pri.length));
+  return { due, fresh: pri.concat(rest) };
+}
+
+export function stats(items, state, now = Date.now()) {
+  let total = 0, learned = 0, learning = 0, due = 0;
+  for (const it of items) {
+    for (const c of cardsFor(it, state.settings.tenses)) {
+      total++;
+      const p = state.progress[c.id];
+      if (!p) continue;
+      if (isLearned(p)) learned++; else learning++;
+      if (p.due <= now) due++;
+    }
+  }
+  return { total, learned, learning, due, unseen: total - learned - learning };
+}
+
+// Item status for the word list: the weakest of its cards.
+export function itemStatus(it, state) {
+  const cs = cardsFor(it, state.settings.tenses).filter(c => c.kind !== 'c');
+  if (!cs.length) return 'no translation';
+  const ps = cs.map(c => state.progress[c.id]);
+  if (ps.every(p => !p)) return 'new';
+  if (ps.every(p => isLearned(p))) return 'learned';
+  return 'learning';
+}
+
+// For printing: weakest studied cards first (low recall chance, many lapses), then priority/new words.
+export function weakest(items, state, n, filter, now = Date.now()) {
+  const scored = [];
+  for (const it of items) {
+    if (!hasMeaning(it)) continue;
+    const c = { id: it.id + '|f', item: it, kind: 'f' };
+    if (filter && !matchesFilter(c, filter)) continue;
+    const pf = state.progress[it.id + '|f'], pr = state.progress[it.id + '|r'];
+    if (isLearned(pf) && isLearned(pr)) continue;
+    const studied = [pf, pr].filter(Boolean);
+    let score;
+    if (studied.length) {
+      score = Math.min(...studied.map(p => retrievability(p, now))) - 0.1 * studied.reduce((a, p) => a + p.lapses, 0);
+    } else {
+      score = state.priority[it.id] ? 0.5 : 2 + newRank(it, state) / 1e4;
+    }
+    scored.push([score, it]);
+  }
+  return scored.sort((a, b) => a[0] - b[0]).slice(0, n).map(x => x[1]);
+}

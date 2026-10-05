@@ -1,0 +1,579 @@
+Unit ID,Learning Unit,Català,Lemma,Gender,Gender Pattern,Pronunciació,Example Sentence,Spanish,Arabic,English,Original Row
+U01,Foundations & Everyday Basics,el llapis,-,el,article noun,ʎa·pis,He perdut el llapis a classe.,lápiz,قلم رصاص,pencil,2.0
+U01,Foundations & Everyday Basics,la pel·lícula,-,la,article noun,pə·li·ku·lə,Vam veure una pel·lícula molt interessant ahir.,película,فيلم,movie,5.0
+U01,Foundations & Everyday Basics,el paral·lel,-,el,article noun,pə·rə·lɛl,Els carrers són gairebé paral·lels entre ells.,paralelo,متوازٍ,parallel,7.0
+U01,Foundations & Everyday Basics,la caixa,-,la,article noun,ka·ʃə,He guardat les fotos en una caixa.,caja,صندوق,box,16.0
+U01,Foundations & Everyday Basics,el queixal,-,el,article noun,kə·ʃal,M'han tret un queixal del seny.,muela,ضرس,molar,17.0
+U01,Foundations & Everyday Basics,el llibre,-,el,article noun,ʎi·bɾə,Estic llegint un llibre molt interessant.,libro,كتاب,book,22.0
+U01,Foundations & Everyday Basics,els llibres,-,els,article noun,ʎi·bɾəs,Tinc molts llibres a casa.,libros,كتب,books,28.0
+U01,Foundations & Everyday Basics,l’ungla,-,l’,article noun,uŋ·glə,M’he trencat una ungla.,uña,ظفر,nail,34.0
+U01,Foundations & Everyday Basics,el raïm,-,el,article noun,ra·im,El raïm és molt dolç aquest any.,uva,عنب,grape,45.0
+U01,Foundations & Everyday Basics,el soroll,-,el,article noun,su·ɾɔʎ,Hi ha molt soroll al carrer.,ruido,ضوضاء,noise,47.0
+U01,Foundations & Everyday Basics,el suro,-,el,article noun,su·ru,Aquesta ampolla té un tap de suro.,corcho,فلين,cork,48.0
+U01,Foundations & Everyday Basics,el sencer,-,el,article noun,sən·sɛ,Ha menjat el pastís sencer.,entero,كامل,whole,49.0
+U01,Foundations & Everyday Basics,la sivella,-,la,article noun,si·bɛ·ʎə,La sivella del cinturó és trencada.,hebilla,إبزيم,buckle,50.0
+U01,Foundations & Everyday Basics,la cigarreta,-,la,article noun,si·gə·rɛ·tə,Fumar una cigarreta és dolent per a la salut.,cigarrillo,سيجارة,cigarette,52.0
+U01,Foundations & Everyday Basics,la abraçada,abraçar,la,article noun,ə·bɾə·sa·də,Ella em va donar una abraçada.,abrazo,عناق,hug,54.0
+U01,Foundations & Everyday Basics,la cançó,cantar,la,article noun,kən·so,Aquesta cançó és molt famosa.,canción,أغنية,song,58.0
+U01,Foundations & Everyday Basics,l’escàs,-,l’,article noun,əs·kas,Aquest recurs és molt escàs.,escaso,نادر,scarce,60.0
+U01,Foundations & Everyday Basics,la pista,-,la,article noun,pis·tə,La pista està gelada.,pista,مسار,track,61.0
+U01,Foundations & Everyday Basics,el llaç,-,el,article noun,ʎas,Porta un llaç vermell als cabells.,lazo,ربطة,bow,63.0
+U01,Foundations & Everyday Basics,la zona,-,la,article noun,zɔ·nə,Aquesta zona és molt tranquil·la.,zona,منطقة,zone,65.0
+U01,Foundations & Everyday Basics,el pinzell,-,el,article noun,pin·zɛʎ,Utilitza un pinzell per pintar.,pincel,فرشاة الرسم,paintbrush,69.0
+U01,Foundations & Everyday Basics,el lleure,lleure,el,article noun,ʎɛw·rə,En el temps de lleure llegeixo.,ocio,وقت الفراغ,leisure,493.0
+U01,Foundations & Everyday Basics,el cavall,-,el,article noun,kə·baʎ,El cavall corre pel prat.,caballo,حصان,horse,4.0
+U01,Foundations & Everyday Basics,l’arbre,-,l’,article noun,ar·bɾə,L’arbre del jardí fa molta ombra.,árbol,شجرة,tree,31.0
+U01,Foundations & Everyday Basics,ill,-,,no fixed article,un,iʎ,Hi ha un ill al mig de la carretera.,islote,جزيرة صغيرة,33.0
+U01,Foundations & Everyday Basics,les aigües,-,les,article noun,aj·ɡwəs,Les aigües del riu són fredes.,aguas,مياه,waters,44.0
+U01,Foundations & Everyday Basics,el cel,-,el,article noun,sɛl,El cel és blau avui.,cielo,سماء,sky,51.0
+U01,Foundations & Everyday Basics,la natació,nadar,la,article noun,nə·tə·si·o,La natació és el meu esport preferit.,natación,سباحة,swimming,55.0
+U01,Foundations & Everyday Basics,la senyora,-,la,article noun,sə·ɲɔ·ɾə,La senyora Puig és molt amable.,señora,سيدة,lady,8.0
+U01,Foundations & Everyday Basics,el noi,-,el,article noun,nɔj,Aquell noi juga molt bé a futbol.,chico,ولد,boy,18.0
+U01,Foundations & Everyday Basics,la noia,-,la,article noun,nɔ·jə,La noia estudia medicina.,chica,فتاة,girl,19.0
+U01,Foundations & Everyday Basics,l’home,-,l’,article noun,ɔ·mə,L’home espera l’autobús.,hombre,رجل,man,20.0
+U01,Foundations & Everyday Basics,la dona,-,la,article noun,dɔ·nə,La dona porta un vestit vermell.,mujer,امرأة,woman,21.0
+U01,Foundations & Everyday Basics,els nois,-,els,article noun,nɔjs,Els nois juguen al parc.,chicos,أولاد,boys,24.0
+U01,Foundations & Everyday Basics,les noies,-,les,article noun,nɔ·jəs,Les noies canten molt bé.,chicas,فتيات,girls,25.0
+U01,Foundations & Everyday Basics,els homes,-,els,article noun,ɔ·məs,Els homes treballen al camp.,hombres,رجال,men,26.0
+U01,Foundations & Everyday Basics,les dones,-,les,article noun,dɔ·nəs,Les dones estan parlant.,mujeres,نساء,women,27.0
+U01,Foundations & Everyday Basics,la infermera,-,la,article noun,im·fər·mɛ·ɾə,L’infermera cuida els pacients amb molta dedicació.,enfermera,ممرضة,nurse,35.0
+U01,Foundations & Everyday Basics,l’any,-,l’,article noun,aɲ,Tinc vacances un cop l'any.,año,سنة,year,10.0
+U01,Foundations & Everyday Basics,el maig,-,el,article noun,matʃ,El meu aniversari és al maig.,mayo,مايو,May,13.0
+U01,Foundations & Everyday Basics,el mig,-,el,article noun,mitʃ,Vam menjar mig pastís.,medio,نصف,half,14.0
+U01,Foundations & Everyday Basics,dos,-,—,no fixed article,dos,Tinc dos gats a casa.,dos,اثنان,two (masculine),29.0
+U01,Foundations & Everyday Basics,dues,-,—,no fixed article,du·əs,He comprat dues entrades pel concert.,dos,اثنتان,two (feminine),30.0
+U01,Foundations & Everyday Basics,avui,-,—,no fixed article,ə·vuj,Avui no treballo.,hoy,اليوم,today,38.0
+U01,Foundations & Everyday Basics,l’hora,-,l’,article noun,ɔ·ɾə,Quina hora és?,hora,ساعة,hour,39.0
+U01,Foundations & Everyday Basics,el vintè,-,el,article noun,bin·tɛ,És el vintè aniversari de l’escola.,veinteavo,العشرون,twentieth,40.0
+U01,Foundations & Everyday Basics,el desè,-,el,article noun,də·zɛ,És el desè capítol del llibre.,décimo,العاشر,tenth,41.0
+U01,Foundations & Everyday Basics,el sisè,-,el,article noun,si·zɛ,Ha quedat en sisè lloc a la cursa.,sexto,السادس,sixth,42.0
+U01,Foundations & Everyday Basics,el zero,-,el,article noun,zɛ·ru,La temperatura és zero graus.,cero,صفر,zero,64.0
+U01,Foundations & Everyday Basics,el temps,-,el,article noun,,No tinc gaire temps aquesta setmana.,tiempo,,time,
+U01,Foundations & Everyday Basics,el mòbil,-,el,article noun,,He deixat el mòbil sobre la taula.,móvil,,mobile phone,
+U01,Foundations & Everyday Basics,el pirata,-,el,article noun,,El nen va disfressat de pirata.,pirata,,pirate,
+U01,Foundations & Everyday Basics,el regal,-,el,article noun,,Li hem comprat un regal d’aniversari.,regalo,,gift,
+U01,Foundations & Everyday Basics,la disfressa,-,la,article noun,,La seva disfressa és molt original.,disfraz,,costume,
+U01,Foundations & Everyday Basics,la novel·la,-,la,article noun,,Estic llegint una novel·la curta.,novela,,novel,
+U01,Foundations & Everyday Basics,l’aniversari,-,l’,article noun,,Demà celebrem el seu aniversari.,cumpleaños,,birthday,
+U01,Foundations & Everyday Basics,l’anunci,-,l’,article noun,,He vist l’anunci al diari.,anuncio,,advertisement; announcement,
+U01,Foundations & Everyday Basics,la foto,-,la,article noun,,M’ensenyes la foto?,foto,,photo,
+U02,"Work, Study & Admin Communication",el punt,-,el,article noun,pun,Aquests són els punts principals.,punto,نقطة,point,100.0
+U02,"Work, Study & Admin Communication",implicat,implicar,—,no fixed article,im·pli·kat,Estem implicats en el projecte.,implicado,منخرط,involved,101.0
+U02,"Work, Study & Admin Communication",les europees,europeu,les,article noun,eu·ru·pɛ·əs,Les institucions europees financen projectes.,europeas,أوروبية,European,102.0
+U02,"Work, Study & Admin Communication",les liderades,liderar,les,article noun,li·də·ra·dəs,Les propostes són liderades per una agència.,lideradas,مقادة,led,103.0
+U02,"Work, Study & Admin Communication",el mail,-,el,article noun,mejl,He rebut un mail important.,correo,بريد,mail,104.0
+U02,"Work, Study & Admin Communication",la info,-,la,article noun,in·fo,Aquesta info és rellevant.,información,معلومات,info,105.0
+U02,"Work, Study & Admin Communication",el projecte,-,el,article noun,pɾu·ʒek·tə,El projecte començarà aviat.,proyecto,مشروع,project,106.0
+U02,"Work, Study & Admin Communication",obre,obrir,—,no fixed article,ɔ·bɾə,La convocatòria obre al gener.,abre,تفتح,opens,107.0
+U02,"Work, Study & Admin Communication",tanca,tancar,—,no fixed article,taŋ·kə,El termini tanca d’aquí un mes.,cierra,تغلق,closes,108.0
+U02,"Work, Study & Admin Communication",el dimarts,-,el,article noun,di·maɾts,Ens reunirem dimarts.,martes,الثلاثاء,Tuesday,110.0
+U02,"Work, Study & Admin Communication",la batuta,-,la,article noun,ba·tu·tə,Ell porta la batuta del projecte.,batuta,قيادة,lead / baton (figurative),112.0
+U02,"Work, Study & Admin Communication",la convocatòria,-,la,article noun,kom·bu·ka·tɔ·ri·ə,Hem enviat la proposta a la convocatòria.,convocatoria,دعوة تمويل,call for proposals,113.0
+U02,"Work, Study & Admin Communication",demanen,demanar,—,no fixed article,də·ma·nən,Ens demanen participar al projecte.,piden,يطلبون,they ask,114.0
+U02,"Work, Study & Admin Communication",el tema,-,el,article noun,tɛ·mə,Treballen en temes d’assaigs.,tema,موضوع,topic,115.0
+U02,"Work, Study & Admin Communication",parlant,parlar,—,no fixed article,pəɾ·lan,Estem parlant amb el centre.,hablando,يَتَحَدَّثون,talking,116.0
+U02,"Work, Study & Admin Communication",intentar,intentar,—,no fixed article,in·tən·taɾ,Volem intentar ajudar.,intentar,محاولة,to try,117.0
+U02,"Work, Study & Admin Communication",poder,poder,—,no fixed article,pu·dɛ,No sabem si ens podem comprometre.,poder,استطاعة,can / to be able to,118.0
+U02,"Work, Study & Admin Communication",el repàs,repassar,el,article noun,rə·pas,Fem un repàs del temari abans de l’examen.,repaso,مراجعة,review,119.0
+U02,"Work, Study & Admin Communication",la selectivitat,-,la,article noun,sə·lək·ti·ve·tat,Estudia molt per a la selectivitat.,selectividad,امتحان القبول الجامعي,university entrance exam,121.0
+U02,"Work, Study & Admin Communication",la subcarpeta,-,la,article noun,sup·kər·pɛ·tə,,subcarpeta,مجلد فرعي,subfolder,122.0
+U02,"Work, Study & Admin Communication",posat,posar,—,no fixed article,pu·zat,,puesto,وَضَعَ,placed,123.0
+U02,"Work, Study & Admin Communication",trobat,trobar,—,no fixed article,tro·bat,,encontrado,وَجَدَ,found,124.0
+U02,"Work, Study & Admin Communication",el assessorament,assessorar,el,article noun,ə·sə·su·ɾə·mèn,,asesoramiento,استشارة,advice / consultancy,125.0
+U02,"Work, Study & Admin Communication",aprofitar,aprofitar,—,no fixed article,ə·pru·fi·tá,,aprovechar,استفادة,to take advantage,127.0
+U02,"Work, Study & Admin Communication",crec,creure,—,no fixed article,krèk,,creo,أعتقد,I think,128.0
+U02,"Work, Study & Admin Communication",la memòria,-,la,article noun,mə·mɔ·ri·ə,,memoria,مُذَكِّرَة,report / documentation,129.0
+U02,"Work, Study & Admin Communication",devieu,deure,—,no fixed article,dè·wi·aw,,debíais,كان عليكم,you (pl.) had to,130.0
+U02,"Work, Study & Admin Communication",presentar,presentar,—,no fixed article,prə·zən·tá,,presentar,تقديم,to submit,131.0
+U02,"Work, Study & Admin Communication",els Cupons,-,els,article noun,ku·pons,,cupones,قسائم,vouchers (program),132.0
+U02,"Work, Study & Admin Communication",la Acció,-,la,article noun,ək·si·ó,,Acció (agencia),أكسيو,Acció (agency),133.0
+U02,"Work, Study & Admin Communication",la sol·licitud,sol·licitar,la,article noun,su·li·si·tut,He enviat una sol·licitud de feina avui.,solicitud,طلب,application,6.0
+U02,"Work, Study & Admin Communication",la companyia,-,la,article noun,kom·pə·ɲi·ə,Treballa en una gran companyia internacional.,compañía,شركة,company,9.0
+U02,"Work, Study & Admin Communication",el despatx,despatxar,el,article noun,dəs·patʃ,Té el seu despatx al tercer pis.,despacho,مكتب,office,12.0
+U02,"Work, Study & Admin Communication",la universitat,-,la,article noun,u·ni·bər·si·tat,Estudia dret a la universitat.,universidad,جامعة,university,36.0
+U02,"Work, Study & Admin Communication",l’història,-,l’,article noun,is·tɔ·ɾi·ə,M’agrada molt la història antiga.,historia,تاريخ,history,37.0
+U02,"Work, Study & Admin Communication",la qüestió,qüestionar,la,article noun,kəs·tjo,La qüestió és molt complicada.,cuestión,مسألة,question,43.0
+U02,"Work, Study & Admin Communication",la adreça,adreçar,la,article noun,ə·dɾɛ·sə,M’han canviat l’adreça de casa.,dirección,عنوان,address,57.0
+U02,"Work, Study & Admin Communication",esborrar,esborrar,—,no fixed article,əz·bu·ra,Vull esborrar aquesta paraula.,borrar,مسح,to erase,70.0
+U02,"Work, Study & Admin Communication",la proposta,proposar,la,article noun,pro·pɔs·tə,La proposta està en revisió.,propuesta,اقتراح,proposal,71.0
+U02,"Work, Study & Admin Communication",la agència,-,la,article noun,ə·ʒɛn·si·ə,L’agència coordina el projecte.,agencia,وكالة,agency,72.0
+U02,"Work, Study & Admin Communication",la recerca,recercar,la,article noun,rə·sɛɾ·kə,La recerca és essencial per innovar.,investigación,بحث,research,73.0
+U02,"Work, Study & Admin Communication",compartir,compartir,—,no fixed article,kom·pəɾ·tiɾ,Us vull compartir aquesta informació.,compartir,مشاركة,to share,74.0
+U02,"Work, Study & Admin Communication",la informació,informar,la,article noun,im·fur·mə·si·o,L’endemà vaig rebre més informació.,información,معلومات,information,75.0
+U02,"Work, Study & Admin Communication",adjunt,adjuntar,—,no fixed article,ət·ʒun,El document adjunt és important.,adjunto,مرفق,attached,77.0
+U02,"Work, Study & Admin Communication",la invitació,invitar,la,article noun,in·bi·tə·si·o,He rebut una invitació a la reunió.,invitación,دعوة,invitation,78.0
+U02,"Work, Study & Admin Communication",relacionat/-ada,relacionar,—,no fixed article,rə·lə·si·u·nat,Estem en un projecte relacionat amb salut.,relacionado,مرتبط,related,79.0
+U02,"Work, Study & Admin Communication",la impressió,imprimir,la,article noun,im·pɾə·si·o,L’impressió 3D és molt útil.,impresión,طباعة,printing,80.0
+U02,"Work, Study & Admin Communication",la carpeta,-,la,article noun,kər·pɛ·tə,La carpeta conté tots els documents.,carpeta,مجلد,folder,82.0
+U02,"Work, Study & Admin Communication",vinculat/-ada,vincular,—,no fixed article,bin·ku·lat,Està vinculat a un altre projecte.,vinculado,مرتبط,linked,83.0
+U02,"Work, Study & Admin Communication",la call,-,la,article noun,kal,Aquesta call obre al gener.,convocatoria,دعوةٌ تمويلية,call (funding call),84.0
+U02,"Work, Study & Admin Communication",el esquelet,-,el,article noun,əs·kə·lɛt,He fet l’esquelet de la presentació.,esqueleto,هيكل,skeleton / outline,85.0
+U02,"Work, Study & Admin Communication",la transparència,-,la,article noun,tɾəns·pə·ɾɛn·si·ə,Calen cinc transparències per a la reunió.,diapositiva,شريحة,slide,86.0
+U02,"Work, Study & Admin Communication",la presentació,presentar,la,article noun,pɾə·zən·tə·si·o,Farem la presentació dimarts.,presentación,عرض,presentation,87.0
+U02,"Work, Study & Admin Communication",incloure,incloure,—,no fixed article,iŋ·klaw·rə,Volem incloure més activitats.,incluir,إدراج,to include,88.0
+U02,"Work, Study & Admin Communication",la capacitat,capacitar,la,article noun,kə·pə·si·tat,Tenen capacitat per fer proves.,capacidad,قدرة,capacity,89.0
+U02,"Work, Study & Admin Communication",la caracterització,caracteritzar,la,article noun,kə·rək·tə·ɾi·tsi·o,Fem caracterització de materials.,caracterización,خصائص,material characterization,91.0
+U02,"Work, Study & Admin Communication",l’interès,interessar,l’,article noun,in·tə·rɛs,Això els resulta d’interès.,interés,اهتمام,interest,92.0
+U02,"Work, Study & Admin Communication",la competència,competir,la,article noun,kom·pə·tɛn·si·ə,Tenen competència forta.,competencia,منافسة,competition,93.0
+U02,"Work, Study & Admin Communication",la tecnologia,-,la,article noun,tək·nu·lu·ʒi·ə,La tecnologia està avançant ràpid.,tecnología,تكنولوجيا,technology,94.0
+U02,"Work, Study & Admin Communication",treballar,treballar,—,no fixed article,tɾə·bə·ʎa,Estem treballant en dues propostes.,trabajar,عمل,to work,95.0
+U02,"Work, Study & Admin Communication",participar,participar,—,no fixed article,pəɾ·ti·si·paɾ,Volem participar en el consorci.,participar,مشاركة,to participate,96.0
+U02,"Work, Study & Admin Communication",l’assaig,assajar,l’,article noun,ə·saj,Farem assaigs amb el laboratori.,ensayo,اختبار,test / trial,97.0
+U02,"Work, Study & Admin Communication",la resposta,respondre,la,article noun,rəs·pɔs·tə,Hem enviat una resposta.,respuesta,رد,response,98.0
+U02,"Work, Study & Admin Communication",comprometre’s,comprometre,—,no fixed article,kom·pɾu·mɛ·tɾəs,Ens volem comprometre amb el projecte.,comprometerse,التزام,to commit,99.0
+U02,"Work, Study & Admin Communication",el hidrògen,-,el,article noun,i·dɾɔ·ʒən,L’hidrògen és un combustible net.,hidrógeno,هيدروجين,hydrogen,81.0
+U02,"Work, Study & Admin Communication",els mesos,-,els,article noun,mé·zus,Els darrers mesos…,meses,أشهر,months,140.0
+U02,"Work, Study & Admin Communication",incorporat,incorporar,—,no fixed article,in·kor·po·rát,S'han incorporat persones noves.,incorporado,انضمّ,joined,141.0
+U02,"Work, Study & Admin Communication",les noves,-,les,article noun,nó·vəs,Noves persones.,nuevas,جديدة,new,142.0
+U02,"Work, Study & Admin Communication",les persones,-,les,article noun,per·só·nəs,Hi ha noves persones.,personas,أشخاص,people,143.0
+U02,"Work, Study & Admin Communication",el nostre,-,el,article noun,nós·trə,El nostre equip.,nuestro,خاصّتنا,our,144.0
+U02,"Work, Study & Admin Communication",el equip,-,el,article noun,e·kíp,El nostre equip.,equipo,فريق,team,145.0
+U02,"Work, Study & Admin Communication",m’agradaria,agradar,—,no fixed article,ma·gra·da·rí·a,M’agradaria donar-los la benvinguda.,me gustaría,أودّ,I would like,146.0
+U02,"Work, Study & Admin Communication",donar-los,donar,—,no fixed article,do·nár·lus,Vull donar-los la benvinguda.,darles,إعطاؤهم,to give them,147.0
+U02,"Work, Study & Admin Communication",la benvinguda,-,la,article noun,ben·vin·gú·də,Donar la benvinguda.,bienvenida,ترحيب,welcome,148.0
+U02,"Work, Study & Admin Communication",la oficial,-,la,article noun,o·fi·siál,La benvinguda oficial.,oficial,رسمي,official,149.0
+U02,"Work, Study & Admin Communication",el consell,-,el,article noun,,El teu consell m’ha ajudat molt.,consejo,,advice,
+U02,"Work, Study & Admin Communication",la instrucció,-,la,article noun,,Llegeix bé la instrucció abans de començar.,instrucción,,instruction,
+U02,"Work, Study & Admin Communication",la queixa,-,la,article noun,,Han presentat una queixa pel soroll.,queja,,complaint,
+U02,"Work, Study & Admin Communication",la reclamació,-,la,article noun,,La reclamació ja és enviada.,reclamación,,claim; complaint,
+U02,"Work, Study & Admin Communication",l’ajuda,-,l’,article noun,,Necessito ajuda amb aquest exercici.,ayuda,,help,
+U02,"Work, Study & Admin Communication",l’experiència,-,l’,article noun,,Té molta experiència en aquest camp.,experiencia,,experience,
+U02,"Work, Study & Admin Communication",el certificat,-,el,article noun,,Necessito el certificat per fer el tràmit.,certificado,,certificate,
+U02,"Work, Study & Admin Communication",el resum,-,el,article noun,,Fes un resum del text.,resumen,,summary,
+U02,"Work, Study & Admin Communication",la feina,-,la,article noun,,Avui tinc molta feina.,trabajo,,work; job,
+U02,"Work, Study & Admin Communication",la professió,-,la,article noun,,Quina és la teva professió?,profesión,,profession,
+U02,"Work, Study & Admin Communication",l’examen,-,l’,article noun,,Demà tenim un examen de català.,examen,,exam,
+U03,Home & Furniture,la tovallola,-,la,article noun,tu·bə·ʎɔ·lə,"Després de dutxar-me, agafo la tovallola.",toalla,منشفة,towel,3.0
+U03,Home & Furniture,la dutxa,dutxar,la,article noun,du·tʃə,Em prenc una dutxa cada matí.,ducha,دُش,shower,11.0
+U03,Home & Furniture,el llit,-,el,article noun,ʎit,El llit és molt còmode.,cama,سرير,bed,163.0
+U03,Home & Furniture,el coixí,-,el,article noun,kwi·zí,Posa el coixí al sofà.,almohada,وسادة,pillow,164.0
+U03,Home & Furniture,la cadira,-,la,article noun,kə·ði·rə,Seu a la cadira.,silla,كرسي,chair,165.0
+U03,Home & Furniture,la taula,-,la,article noun,tau·lə,La taula és de fusta.,mesa,طاولة,table,166.0
+U03,Home & Furniture,el prestatge,-,el,article noun,prəs·tat·ʒə,Els llibres són al prestatge.,estante,رف,shelf,167.0
+U03,Home & Furniture,el armari,-,el,article noun,ar·ma·ri,Guardo la roba a l’armari.,armario,خزانة,wardrobe,168.0
+U03,Home & Furniture,la llum,-,la,article noun,ʎum,"Encén la llum, si us plau.",luz,ضوء,light,169.0
+U03,Home & Furniture,la llum de peu,-,la,article noun,ʎum də pɛw,La llum de peu és al costat del sofà.,lámpara de pie,مصباح أرضي,floor lamp,170.0
+U03,Home & Furniture,el quadre,-,el,article noun,kwa·drə,Penja el quadre a la paret.,cuadro,لوحة,painting,171.0
+U03,Home & Furniture,la bossa de mà,-,la,article noun,bo·sə də ma,La bossa de mà és sobre la taula.,bolso,حقيبة يد,handbag,172.0
+U03,Home & Furniture,el ventilador,-,el,article noun,vən·ti·la·ðó,El ventilador refresca l’habitació.,ventilador,مروحة,fan,173.0
+U03,Home & Furniture,la casa,-,la,article noun,ka·zə,Viuen en una casa gran.,casa,منزل,house,66.0
+U03,Home & Furniture,davant,-,-,no fixed article,də·vant,El cotxe és davant de casa.,delante,أمام,in front,174.0
+U03,Home & Furniture,darrere,-,-,no fixed article,də·re·rə,El jardí és darrere la casa.,detrás,خلف,behind,175.0
+U03,Home & Furniture,al costat,-,-,phrase / expression,al kos·tat,El bany és al costat del menjador.,al lado,بجانب,next to,176.0
+U03,Home & Furniture,el pis,-,el,article noun,pis,Tinc un pis petit al centre.,piso,شقة,apartment,151.0
+U03,Home & Furniture,la habitació,-,la,article noun,a·bi·ta·si·ó,L’habitació és molt lluminosa.,habitación,غرفة,room,152.0
+U03,Home & Furniture,el menjador,-,el,article noun,mən·ʒa·ðó,Sopem al menjador cada nit.,comedor,غرفة الطعام,dining room,153.0
+U03,Home & Furniture,la cuina,-,la,article noun,kwi·nə,La cuina és nova i moderna.,cocina,مطبخ,kitchen,154.0
+U03,Home & Furniture,el bany,-,el,article noun,baɲ,El bany és al costat de la cuina.,baño,حمّام,bathroom,155.0
+U03,Home & Furniture,la sala d’estar,-,la,article noun,sa·lə dəs·tar,Ens relaxem a la sala d’estar.,sala de estar,غرفة الجلوس,living room,156.0
+U03,Home & Furniture,el balcó,-,el,article noun,bal·kó,Surt al balcó a prendre aire.,balcón,شرفة,balcony,157.0
+U03,Home & Furniture,la terrassa,-,la,article noun,tə·ra·sə,Desdejunem a la terrassa.,terraza,تراس,terrace,158.0
+U03,Home & Furniture,el jardí,-,el,article noun,ʒar·dí,Els nens juguen al jardí.,jardín,حديقة,garden,159.0
+U03,Home & Furniture,el rebedor,-,el,article noun,rə·bə·ðó,Deixa les sabates al rebedor.,recibidor,مدخل,entryway,160.0
+U03,Home & Furniture,el pis de dalt,-,el,article noun,pis də ðalt,El dormitori és al pis de dalt.,piso de arriba,الطابق العلوي,upstairs floor,161.0
+U03,Home & Furniture,el pis de baix,-,el,article noun,pis də baʃ,La cuina és al pis de baix.,piso de abajo,الطابق السفلي,downstairs floor,162.0
+U03,Home & Furniture,la nevera,-,la,article noun,,La llet és a la nevera.,nevera,,fridge,
+U04,City Places & Directions,a la dreta,-,-,phrase / expression,a lə drɛ·tə,Gira a la dreta.,a la derecha,إلى اليمين,to the right,177.0
+U04,City Places & Directions,a l’esquerra,-,-,phrase / expression,a ləs·kɛ·rə,Gira a l’esquerra.,a la izquierda,إلى اليسار,to the left,178.0
+U04,City Places & Directions,a mà dreta,-,-,phrase / expression,a ma drɛ·tə,La botiga és a mà dreta.,a mano derecha,عن اليمين,on the right hand side,179.0
+U04,City Places & Directions,a mà esquerra,-,-,phrase / expression,a ma əs·kɛ·rə,El banc és a mà esquerra.,a mano izquierda,عن اليسار,on the left hand side,180.0
+U04,City Places & Directions,entrant,-,-,no fixed article,en·trant,"Entrant a casa, el bany és a l’esquerra.",entrando,عند الدخول,entering,181.0
+U04,City Places & Directions,sortint,-,-,no fixed article,sor·tint,"Sortint, la cuina queda a la dreta.",saliendo,عند الخروج,exiting,182.0
+U04,City Places & Directions,al final,-,-,phrase / expression,al fi·nal,L’habitació és al final del passadís.,al final,في النهاية,at the end,183.0
+U04,City Places & Directions,el casal de gent gran,-,el,article noun,kə·zal də ʒent ɣɾan,El meu avi va al casal de gent gran cada tarda.,centro de mayores,مركز كبار السن,senior center,184.0
+U04,City Places & Directions,l’hospital,-,l’,article noun,os·pi·tal,L’hospital és a prop del centre.,hospital,مستشفى,hospital,185.0
+U04,City Places & Directions,el centre cívic,-,el,article noun,sen·trə sí·vik,Fem un curs al centre cívic.,centro cívico,مركز اجتماعي,civic center,186.0
+U04,City Places & Directions,la protectora d’animals,-,la,article noun,pru·tək·to·rə da·ni·mals,La protectora d’animals cuida gossos abandonats.,protectora de animales,جمعية رعاية الحيوانات,animal shelter,187.0
+U04,City Places & Directions,la oficina de l’ajuntament,-,la,article noun,u·fi·si·nə də la·ʒun·ta·ment,Vaig a l’oficina de l’ajuntament per fer un tràmit.,oficina del ayuntamiento,مكتب البلدية,town hall office,188.0
+U04,City Places & Directions,la piscina,-,la,article noun,pis·si·nə,A l’estiu anem a la piscina.,piscina,مسبح,swimming pool,189.0
+U04,City Places & Directions,escola,-,,no fixed article,l’əs·kɔ·lə,L’escola és nova.,escuela,مدرسة,school,190.0
+U04,City Places & Directions,institut,-,,no fixed article,l’ins·ti·tut,L’institut és al costat del parc.,instituto,معهد / ثانوية,high school,191.0
+U04,City Places & Directions,el parc,-,el,article noun,park,Els nens juguen al parc.,parque,حديقة عامة,park,192.0
+U04,City Places & Directions,el museu,-,el,article noun,mu·zɛw,Visitem el museu el cap de setmana.,museo,متحف,museum,193.0
+U04,City Places & Directions,el teatre,-,el,article noun,tə·a·trə,Anem al teatre dissabte.,teatro,مسرح,theatre,194.0
+U04,City Places & Directions,el poliesportiu,-,el,article noun,po·li·əs·por·tiu,Entreno al poliesportiu municipal.,polideportivo,مركز رياضي,sports center,195.0
+U04,City Places & Directions,el pas de vianants,-,el,article noun,pas də vi·a·nants,Creua pel pas de vianants.,paso de peatones,ممر مشاة,pedestrian crossing,196.0
+U04,City Places & Directions,el semàfor,-,el,article noun,sə·ma·for,Espera que el semàfor sigui verd.,semáforo,إشارة مرور,traffic light,197.0
+U04,City Places & Directions,el contenidor,-,el,article noun,kon·tə·ni·ðó,Llença la brossa al contenidor.,contenedor,حاوية,container,198.0
+U04,City Places & Directions,la font,-,la,article noun,font,Beu aigua de la font.,fuente,نافورة,fountain,199.0
+U04,City Places & Directions,la cantonada,-,la,article noun,kan·tu·na·ðə,La botiga és a la cantonada.,esquina,زاوية,corner,200.0
+U04,City Places & Directions,el fanal,-,el,article noun,fə·nal,El fanal il·lumina el carrer.,farola,عمود إنارة,streetlight,201.0
+U04,City Places & Directions,la paperera,-,la,article noun,pə·pə·ɾe·ɾə,Tira el paper a la paperera.,papelera,سلة مهملات,bin,202.0
+U04,City Places & Directions,la vorera,-,la,article noun,bu·ɾe·ɾə,Camina per la vorera.,acera,رصيف,sidewalk,203.0
+U04,City Places & Directions,dins,-,—,no fixed article,dins,El document és dins la carpeta.,dentro,داخل,inside,109.0
+U04,City Places & Directions,la banda,-,la,article noun,ban·də,"D’altra banda, hi ha novetats.",lado,جانب,side,111.0
+U04,City Places & Directions,a la dreta de,-,-,phrase / expression,a lə drɛ·tə də,El banc és a la dreta de la farmàcia.,a la derecha de,على يمين,to the right of,204.0
+U04,City Places & Directions,a l’esquerra de,-,-,phrase / expression,a ləs·kɛ·rə də,El cafè és a l’esquerra de l’escola.,a la izquierda de,على يسار,to the left of,205.0
+U04,City Places & Directions,davant de,-,-,phrase / expression,də·vant də,El cotxe és davant de l’hospital.,delante de,أمام,in front of,206.0
+U04,City Places & Directions,darrere de,-,-,phrase / expression,də·re·rə də,El jardí és darrere de la casa.,detrás de,خلف,behind,207.0
+U04,City Places & Directions,dins de,-,-,phrase / expression,dinz də,Les claus són dins de la bossa.,dentro de,داخل,inside of,208.0
+U04,City Places & Directions,fora de,-,-,phrase / expression,fɔ·ɾə də,Els nens juguen fora de l’escola.,fuera de,خارج,outside of,209.0
+U04,City Places & Directions,al mig de,-,-,phrase / expression,al mitʃ də,Hi ha una font al mig de la plaça.,en medio de,في وسط,in the middle of,210.0
+U04,City Places & Directions,al costat de,-,-,phrase / expression,al kos·tat də,El supermercat és al costat de la farmàcia.,al lado de,بجانب,next to,211.0
+U04,City Places & Directions,entre … i …,-,-,phrase / expression,en·trə,El banc és entre el parc i l’escola.,entre … y …,بين … و …,between … and …,212.0
+U04,City Places & Directions,a dalt de,-,-,phrase / expression,a ðalt də,El gat és a dalt de la taula.,encima de,فوق,on top of,213.0
+U04,City Places & Directions,a sota de,-,-,phrase / expression,a so·tə də,La pilota és a sota de la cadira.,debajo de,تحت,under,214.0
+U04,City Places & Directions,al voltant de,-,-,phrase / expression,al bol·tan də,Caminem al voltant del parc.,alrededor de,حول,around,215.0
+U04,City Places & Directions,gira,-,-,no fixed article,ʒi·ɾə,Gira a l’esquerra al semàfor.,gira,استدر,turn,216.0
+U04,City Places & Directions,travessa,-,-,no fixed article,trə·βe·sə,Travessa el carrer amb compte.,cruza,اعبر,cross,217.0
+U04,City Places & Directions,continua recte,-,-,phrase / expression,kon·ti·nu·ə rɛk·tə,Continua recte fins al museu.,continúa recto,تابع مستقيمًا,continue straight,218.0
+U04,City Places & Directions,camina,-,-,no fixed article,kə·mi·nə,Camina fins a la plaça.,camina,امشِ,walk,219.0
+U04,City Places & Directions,la reserva,-,la,article noun,,Tinc una reserva per a dues persones.,reserva,,reservation,
+U04,City Places & Directions,el cinema,-,el,article noun,,Anem al cinema dissabte.,cine,,cinema,
+U04,City Places & Directions,el gimnàs,-,el,article noun,,Vaig al gimnàs tres cops per setmana.,gimnasio,,gym,
+U04,City Places & Directions,el mercat,-,el,article noun,,Comprem la fruita al mercat.,mercado,,market,
+U04,City Places & Directions,el restaurant,-,el,article noun,,Hem reservat taula al restaurant.,restaurante,,restaurant,
+U04,City Places & Directions,el viatge,-,el,article noun,,El viatge ha estat molt tranquil.,viaje,,trip,
+U04,City Places & Directions,les vacances,-,les,article noun,,Aquest estiu fem vacances al mar.,vacaciones,,holidays,
+U04,City Places & Directions,l’allotjament,-,l’,article noun,,Ja tenim l’allotjament reservat.,alojamiento,,accommodation,
+U04,City Places & Directions,l’autobús,-,l’,article noun,,L’autobús passa cada mitja hora.,autobús,,bus,
+U05,"Family, Appearance & Personality",vermell,-,-,no fixed article,bər·meʎ,El seu jersei és vermell.,rojo,أحمر,red,302.0
+U05,"Family, Appearance & Personality",la vergonya,-,la,article noun,bər·ɣo·ɲə,Té vergonya de parlar en públic.,vergüenza,خجل,shame,303.0
+U05,"Family, Appearance & Personality",intimidat,-,-,no fixed article,in·ti·mi·ðat,Ell se sent intimidat pel cap.,intimidado,مُرْتَهِب,intimidated,304.0
+U05,"Family, Appearance & Personality",arrissada,-,-,no fixed article,a·ri·sa·ðə,Té els cabells arrissats.,rizada,مجعدة,curly,305.0
+U05,"Family, Appearance & Personality",el nas,-,el,article noun,nas,Té el nas petit.,nariz,أنف,nose,306.0
+U05,"Family, Appearance & Personality",punxegut,-,-,no fixed article,pun·ʃə·ɣut,Té un nas punxegut.,puntiagudo,مدبب,pointed,307.0
+U05,"Family, Appearance & Personality",sembla,-,-,no fixed article,sem·blə,Sembla content avui.,parece,يبدو,seems,308.0
+U05,"Family, Appearance & Personality",sembla contenta,-,-,phrase / expression,sem·blə kon·ten·tə,Sembla contenta amb la notícia.,parece contenta,تبدو سعيدة,seems happy,309.0
+U05,"Family, Appearance & Personality",el nebot,-,el,article noun,nə·bot,El meu nebot té cinc anys.,sobrino,ابن الأخ / الأخت,nephew,220.0
+U05,"Family, Appearance & Personality",el cunyat,-,el,article noun,ku·ɲat,El meu cunyat viu a Girona.,cuñado,زوج الأخت / أخو الزوج,brother-in-law,221.0
+U05,"Family, Appearance & Personality",la criatura,-,la,article noun,kri·a·tu·rə,La criatura dorm al bressol.,criatura,طفل صغير,child,222.0
+U05,"Family, Appearance & Personality",la retallada,-,la,article noun,rə·tə·ʎa·ðə,Porta una barba ben retallada.,rallador - recorte / arreglo,تشذيب - براشة جبنة,trim,223.0
+U05,"Family, Appearance & Personality",la barba ben retallada,-,la,article noun,bar·bə ben rə·tə·ʎa·ðə,Té una barba ben retallada.,barba bien recortada,لحية مشذبة,neatly trimmed beard,224.0
+U05,"Family, Appearance & Personality",castanys,-,-,no fixed article,kəs·ta·ɲs,Té els cabells castanys.,castaños,بني,brown (hair/eyes),225.0
+U05,"Family, Appearance & Personality",rossos,-,-,no fixed article,ro·sus,Té els cabells rossos.,rubios,أشقر,blond,226.0
+U05,"Family, Appearance & Personality",tirant,-,-,no fixed article,ti·rant,Els seus cabells són tirant a rossos.,tirando a,مائل إلى,tending to,227.0
+U05,"Family, Appearance & Personality",tirant a rossos,-,-,phrase / expression,ti·rant a ro·sus,Té els cabells tirant a rossos.,tirando a rubio,مائل إلى الأشقر,blondish,228.0
+U05,"Family, Appearance & Personality",grisos,-,-,no fixed article,gri·zus,Els seus ulls són grisos.,grises,رمادي,grey,229.0
+U05,"Family, Appearance & Personality",la publicitat,-,la,article noun,pu·bli·si·tat,Hi ha molta publicitat al carrer.,publicidad,إعلان,advertising,230.0
+U05,"Family, Appearance & Personality",ens assemblem,-,-,phrase / expression,enz ə·səm·bləm,Ens assemblem molt.,nos parecemos,نتشابه,we resemble each other,231.0
+U05,"Family, Appearance & Personality",el besson,-,el,article noun,bə·son,Ell és el meu germà bessó.,gemelo,توأم,twin,232.0
+U05,"Family, Appearance & Personality",ondulats,-,-,no fixed article,on·du·lats,Té els cabells ondulats.,ondulados,متموج,wavy,233.0
+U05,"Family, Appearance & Personality",calb,-,-,no fixed article,kalb,El meu avi és calb.,calvo,أصلع,bald,234.0
+U05,"Family, Appearance & Personality",amoïnada,-,-,no fixed article,ə·mu·i·na·ðə,Ella està amoïnada pel treball.,preocupada,قلقة,worried,235.0
+U05,"Family, Appearance & Personality",la gàbia,-,la,article noun,ga·bi·ə,L’ocell és dins la gàbia.,jaula,قفص,cage,236.0
+U05,"Family, Appearance & Personality",la germana bessona,-,la,article noun,ʒər·ma·nə bə·so·nə,Té una germana bessona.,hermana gemela,أخت توأم,twin sister,237.0
+U05,"Family, Appearance & Personality",seriós,-,-,no fixed article,sə·ri·ós,Ell és molt seriós.,serio,جاد,serious,238.0
+U05,"Family, Appearance & Personality",generós,-,-,no fixed article,ʒə·nə·rós,És una persona generosa.,generoso,كريم,generous,239.0
+U05,"Family, Appearance & Personality",amable,-,-,no fixed article,ə·ma·blə,Ella és molt amable amb tothom.,amable,لطيف,kind,240.0
+U05,"Family, Appearance & Personality",alegre,-,-,no fixed article,ə·lɛ·ɣrə,Ell és molt alegre.,alegre,مرح,cheerful,241.0
+U05,"Family, Appearance & Personality",aventurer,-,-,no fixed article,ə·βən·tu·ɾer,És molt aventurer.,aventurero,مغامر,adventurous,242.0
+U05,"Family, Appearance & Personality",simpàtic,-,-,no fixed article,sim·pa·tik,El professor és molt simpàtic.,simpático,لطيف,nice,243.0
+U05,"Family, Appearance & Personality",valent,-,-,no fixed article,bə·lent,És molt valent.,valiente,شجاع,brave,244.0
+U05,"Family, Appearance & Personality",decidit,-,-,no fixed article,də·si·ðit,És un home decidit.,decidido,حازم,decisive,245.0
+U05,"Family, Appearance & Personality",decidida,-,-,no fixed article,də·si·ði·ðə,Ella és molt decidida.,decidida,حازمة,decisive,246.0
+U05,"Family, Appearance & Personality",desconfiat,-,-,no fixed article,dəs·kon·fi·at,És una persona desconfiada.,desconfiado,غير واثق,distrustful,247.0
+U05,"Family, Appearance & Personality",desconfiada,-,-,no fixed article,dəs·kon·fi·a·ðə,Ella és desconfiada.,desconfiada,حذرة,distrustful,248.0
+U05,"Family, Appearance & Personality",cregut,-,-,no fixed article,krə·ɣut,És molt cregut.,creído,مغرور,conceited,249.0
+U05,"Family, Appearance & Personality",xerraire,-,-,no fixed article,ʃə·rai·ɾə,És molt xerraire.,hablador,ثرثار,talkative,250.0
+U05,"Family, Appearance & Personality",sensible,-,-,no fixed article,sən·si·blə,Ella és molt sensible.,sensible,حساس,sensitive,251.0
+U05,"Family, Appearance & Personality",el caràcter,-,el,article noun,,El seu caràcter és molt tranquil.,carácter,,character,
+U05,"Family, Appearance & Personality",els cabells,-,els,article noun,,Té els cabells molt llargs.,el pelo,,hair,
+U05,"Family, Appearance & Personality",els ulls,-,els,article noun,,Té els ulls verds.,los ojos,,eyes,
+U05,"Family, Appearance & Personality",la barba,-,la,article noun,,S’ha deixat créixer la barba.,barba,,beard,
+U05,"Family, Appearance & Personality",el germà,-,el,article noun,,El meu germà viu a Girona.,hermano,,brother,
+U05,"Family, Appearance & Personality",el pare,-,el,article noun,,El meu pare treballa a prop de casa.,padre,,father,
+U05,"Family, Appearance & Personality",la germana,-,la,article noun,,La meva germana estudia medicina.,hermana,,sister,
+U05,"Family, Appearance & Personality",la mare,-,la,article noun,,La meva mare cuina molt bé.,madre,,mother,
+U05,"Family, Appearance & Personality",la parella,-,la,article noun,,He vingut amb la meva parella.,pareja,,partner; couple,
+U06,"Emotions, Mood & Physical States","còmode, còmoda",-,-,phrase / expression,kò·mu·ðə,Em sento còmode aquí.,cómodo / cómoda,مرتاح,comfortable,277.0
+U06,"Emotions, Mood & Physical States","animat, animada",-,-,phrase / expression,ə·ni·mat,Ell està molt animat avui.,animado / animada,متحمس,lively,278.0
+U06,"Emotions, Mood & Physical States",de bon humor,-,-,phrase / expression,de bon u·mor,Avui estic de bon humor.,de buen humor,بمزاج جيد,in a good mood,279.0
+U06,"Emotions, Mood & Physical States","il·lusionat, il·lusionada",-,-,phrase / expression,i·lu·zi·o·nat,Ella està il·lusionada amb el viatge.,ilusionado / ilusionada,متحمس,hopeful,280.0
+U06,"Emotions, Mood & Physical States","excitat, excitada",-,-,phrase / expression,ek·si·tat,Ell està excitat pel partit.,excitado / excitada,متحمس,excited,281.0
+U06,"Emotions, Mood & Physical States","encantat, encantada",-,-,phrase / expression,en·kan·tat,Ell està encantat de conèixer-te.,encantado / encantada,سعيد جدًا,delighted,282.0
+U06,"Emotions, Mood & Physical States","alegre, alegre",-,-,phrase / expression,ə·lɛ·ɣrə,Ella està alegre avui.,alegre,مرح,cheerful,283.0
+U06,"Emotions, Mood & Physical States","relaxat, relaxada",-,-,phrase / expression,rə·lək·sat,Ell està relaxat després de vacances.,relajado / relajada,مسترخٍ,relaxed,284.0
+U06,"Emotions, Mood & Physical States","esperançat, esperançada",-,-,phrase / expression,es·pə·ɾən·sat,Ella està esperançada amb el futur.,esperanzado / esperanzada,مفعم بالأمل,hopeful,285.0
+U06,"Emotions, Mood & Physical States","nerviós, nerviosa",-,-,phrase / expression,nər·vi·ós,Ell està nerviós abans de parlar.,nervioso / nerviosa,متوتر,nervous,286.0
+U06,"Emotions, Mood & Physical States","enfadat, enfadada",-,-,phrase / expression,en·fə·dat,Ell està enfadat amb el resultat.,enfadado / enfadada,غاضب,angry,287.0
+U06,"Emotions, Mood & Physical States","trist, trista",-,-,phrase / expression,trist,Ella està trista avui.,triste,حزين,sad,288.0
+U06,"Emotions, Mood & Physical States","avorrit, avorrida",-,-,phrase / expression,ə·βo·ri·ðə,Ella està avorrida a classe.,aburrido / aburrida,يشعر بالملل,bored,289.0
+U06,"Emotions, Mood & Physical States","amoïnat, amoïnada",-,-,phrase / expression,ə·mu·i·nat,Ell està amoïnat per la feina.,preocupado / preocupada,قلق,worried,290.0
+U06,"Emotions, Mood & Physical States","neguitós, neguitosa",-,-,phrase / expression,nə·gi·tós,Ell està neguitós abans del viatge.,inquieto / inquieta,قلق / مضطرب,restless,291.0
+U06,"Emotions, Mood & Physical States","emprenyat, emprenyada",-,-,phrase / expression,əm·prə·ɲat,Ell està emprenyat amb la situació.,enfadado,غاضب جدًا,pissed off,292.0
+U06,"Emotions, Mood & Physical States","espantat, espantada",-,-,phrase / expression,es·pan·tat,Ell està espantat pel soroll.,asustado / asustada,خائف,scared,293.0
+U06,"Emotions, Mood & Physical States","desesperat, desesperada",-,-,phrase / expression,də·zəs·pə·ɾat,Ella està desesperada amb el problema.,desesperado / desesperada,يائس,desperate,294.0
+U06,"Emotions, Mood & Physical States","atabalat, atabalada",-,-,phrase / expression,ə·tə·βə·lat,Ell està atabalat amb tanta feina.,agobiado / agobiada,مرهق,overwhelmed,295.0
+U06,"Emotions, Mood & Physical States","deprimit, deprimida",-,-,phrase / expression,də·pri·mit,Ell està deprimit últimament.,deprimido / deprimida,مكتئب,depressed,296.0
+U06,"Emotions, Mood & Physical States","empipat, empipada",-,-,phrase / expression,əm·pi·pat,Ella està empipada amb ell.,enfadado / enfadada,غاضب,annoyed,297.0
+U06,"Emotions, Mood & Physical States","capficat, capficada",-,-,phrase / expression,kap·fi·kat,Ell està capficat en els seus pensaments.,preocupado,مشغول البال,preoccupied,298.0
+U06,"Emotions, Mood & Physical States","preocupat, preocupada",-,-,phrase / expression,prə·o·ku·pat,Ella està preocupada pel futur.,preocupado / preocupada,قلق,worried,299.0
+U06,"Emotions, Mood & Physical States","ensopit, ensopida",-,-,phrase / expression,en·so·pit,Ell sembla ensopit avui.,abatido / abatida,كئيب,gloomy,300.0
+U06,"Emotions, Mood & Physical States","incòmode, incòmoda",-,-,phrase / expression,in·kò·mu·ðə,Ella se sent incòmoda aquí.,incómodo / incómoda,غير مرتاح,uncomfortable,301.0
+U06,"Emotions, Mood & Physical States",avorrit,-,-,no fixed article,ə·βo·rit,Estic avorrit avui.,aburrido,ممل / يشعر بالملل,bored,262.0
+U06,"Emotions, Mood & Physical States",la serp,-,la,article noun,serp,He vist una serp al camp.,serpiente,ثعبان,snake,263.0
+U06,"Emotions, Mood & Physical States",enfadada,-,-,no fixed article,en·fə·ða·ðə,Ella està enfadada amb el seu germà.,enfadada,غاضبة,angry,264.0
+U06,"Emotions, Mood & Physical States",espantada,-,-,no fixed article,es·pan·ta·ðə,La nena està espantada pel soroll.,asustada,خائفة,scared,265.0
+U06,"Emotions, Mood & Physical States",bromista,-,-,no fixed article,bro·mis·tə,És molt bromista amb els amics.,bromista,محب للمزاح,joker,266.0
+U06,"Emotions, Mood & Physical States",pensativa,-,-,no fixed article,pən·sa·ti·βə,Ella està pensativa avui.,pensativa,متأملة,thoughtful,267.0
+U06,"Emotions, Mood & Physical States",seriosa,-,-,no fixed article,sə·ri·o·zə,Ella és molt seriosa a la feina.,seria,جدية,serious,268.0
+U06,"Emotions, Mood & Physical States",sorpresa,-,-,no fixed article,sur·pre·zə,Ella està sorpresa amb la notícia.,sorprendida,متفاجئة,surprised,269.0
+U06,"Emotions, Mood & Physical States",tranquil·la,-,-,no fixed article,trən·kil·lə,Ella està tranquil·la ara.,tranquila,هادئة,calm,270.0
+U06,"Emotions, Mood & Physical States",contenta,-,-,no fixed article,kon·ten·tə,Ella està contenta amb el resultat.,contenta,سعيدة,happy,271.0
+U06,"Emotions, Mood & Physical States","enamorat, enamorada",-,-,phrase / expression,ə·na·mu·rat,Ell està enamorat de la seva parella.,enamorado / enamorada,واقع في الحب,in love,272.0
+U06,"Emotions, Mood & Physical States","eufòric, eufòrica",-,-,phrase / expression,eu·fò·rik,Ell està eufòric per la victòria.,eufórico / eufórica,مبتهج جدًا,euphoric,273.0
+U06,"Emotions, Mood & Physical States","satisfet, satisfeta",-,-,phrase / expression,sə·tis·fet,Està satisfet amb la feina feta.,satisfecho / satisfecha,راضٍ,satisfied,274.0
+U06,"Emotions, Mood & Physical States","feliç, feliç",-,-,phrase / expression,fə·lis,Ella és molt feliç avui.,feliz,سعيد,happy,275.0
+U06,"Emotions, Mood & Physical States","serè, serena",-,-,phrase / expression,sə·ɾɛ,Ell està serè malgrat el problema.,sereno / serena,هادئ,calm - serene,276.0
+U06,"Emotions, Mood & Physical States",preocupat,-,-,no fixed article,prə·o·ku·pat,Ell està preocupat.,preocupado,قلق,worried,252.0
+U06,"Emotions, Mood & Physical States",nerviós,-,-,no fixed article,nər·vi·ós,Estic nerviós abans de l’examen.,nervioso,متوتر,nervous,253.0
+U06,"Emotions, Mood & Physical States",trist,-,-,no fixed article,trist,Ell sembla trist.,triste,حزين,sad,254.0
+U06,"Emotions, Mood & Physical States",trista,-,-,no fixed article,tris·tə,Ella està trista.,triste,حزينة,sad,255.0
+U06,"Emotions, Mood & Physical States",la gana,-,la,article noun,ga·nə,Tinc gana.,hambre,جوع,hunger,256.0
+U06,"Emotions, Mood & Physical States",la set,-,la,article noun,set,Tinc set.,sed,عطش,thirst,257.0
+U06,"Emotions, Mood & Physical States",la son,-,la,article noun,son,Tinc son.,sueño,نعاس,sleepiness,258.0
+U06,"Emotions, Mood & Physical States",la calor,-,la,article noun,kə·lor,Fa molta calor avui.,calor,حر,heat,259.0
+U06,"Emotions, Mood & Physical States",el fred,-,el,article noun,fret,Tinc fred.,frío,برد,cold,260.0
+U06,"Emotions, Mood & Physical States",tenir mal de cap,-,-,phrase / expression,tə·nir mal də kap,Tinc mal de cap.,tener dolor de cabeza,صداع,to have a headache,261.0
+U06,"Emotions, Mood & Physical States",la preferència,-,la,article noun,,La meva preferència és estudiar al matí.,preferencia,,preference,
+U06,"Emotions, Mood & Physical States",l’estat d’ànim,-,l’,article noun,,Avui el meu estat d’ànim és força bo.,estado de ánimo,,mood,
+U07,"Household Details, Storage & Table Setting",els finestrals,-,els,article noun,fi·nəs·trals,Els finestrals deixen entrar molta llum.,ventanales,نوافذ كبيرة,large windows,319.0
+U07,"Household Details, Storage & Table Setting",donaven,-,-,no fixed article,do·na·βən,Les finestres donaven al jardí.,daban,كانت تطل,gave / faced,320.0
+U07,"Household Details, Storage & Table Setting",el celobert,-,el,article noun,se·lu·βert,El celobert és al mig de l’edifici.,patio interior,فناء داخلي,air shaft,321.0
+U07,"Household Details, Storage & Table Setting",la vora,-,la,article noun,βo·rə,Seu a la vora de la taula.,borde,حافة,edge,322.0
+U07,"Household Details, Storage & Table Setting",estenedor,-,,no fixed article,l’əs·tə·nə·ðó,Penja la roba a l’estenedor.,tendedero,منشر الغسيل,clothesline,323.0
+U07,"Household Details, Storage & Table Setting",les paraules destacades,-,les,article noun,pə·ɾau·ləs dəs·tə·ka·ðəs,Subratlla les paraules destacades.,palabras destacadas,كلمات مميزة,highlighted words,324.0
+U07,"Household Details, Storage & Table Setting",destacar,-,-,no fixed article,dəs·tə·kar,Cal destacar aquest detall.,destacar,يبرز,to highlight,325.0
+U07,"Household Details, Storage & Table Setting",el traster,-,el,article noun,trəs·ter,Guardem coses al traster.,trastero,مخزن,storage room,326.0
+U07,"Household Details, Storage & Table Setting",lleig,-,-,no fixed article,ʎetʃ,Aquest edifici és molt lleig.,feo,قبيح,ugly,348.0
+U07,"Household Details, Storage & Table Setting",brut,-,-,no fixed article,brut,El terra està brut.,sucio,متسخ,dirty,349.0
+U07,"Household Details, Storage & Table Setting",buit,-,-,no fixed article,bwit,El got està buit.,vacío,فارغ,empty,350.0
+U07,"Household Details, Storage & Table Setting",els convidats,-,els,article noun,kon·βi·ðats,Tenim convidats per sopar.,invitados,ضيوف,guests,351.0
+U07,"Household Details, Storage & Table Setting",endreçada,-,-,no fixed article,ən·drə·sa·ðə,La casa està molt endreçada.,ordenada,مرتبة,tidy,352.0
+U07,"Household Details, Storage & Table Setting",apilades,-,-,no fixed article,a·pi·la·ðəs,Les caixes estan apilades.,apiladas,مكدسة,stacked,468.0
+U07,"Household Details, Storage & Table Setting",estaven apilades,-,-,phrase / expression,es·ta·βən a·pi·la·ðəs,Les caixes estaven apilades al magatzem.,estaban apiladas,كانت مكدسة,were stacked,469.0
+U07,"Household Details, Storage & Table Setting",l’ampolla,-,l’,article noun,əm·pɔ·ʎə,Posa l’aigua en una ampolla.,botella,زجاجة,bottle,32.0
+U07,"Household Details, Storage & Table Setting",certs,-,-,no fixed article,serts,Certs problemes són difícils.,ciertos,بعض,certain,327.0
+U07,"Household Details, Storage & Table Setting",els pots,-,els,article noun,pots,Els pots són al rebost.,botes / tarros,مرطبانات,jars,329.0
+U07,"Household Details, Storage & Table Setting",els cigrons,-,els,article noun,si·ɣrons,M’agraden els cigrons amb espinacs.,garbanzos,حمص,chickpeas,330.0
+U07,"Household Details, Storage & Table Setting",el rebost,-,el,article noun,rə·βost,El rebost és ple de menjar.,despensa,مخزن الطعام,pantry,331.0
+U07,"Household Details, Storage & Table Setting",penjar,-,-,no fixed article,pən·ʒar,Penja l’abric a la porta.,colgar,يعلق,to hang,332.0
+U07,"Household Details, Storage & Table Setting",els estris,-,els,article noun,es·tris,Els estris són a la cuina.,utensilios,أدوات,utensils,333.0
+U07,"Household Details, Storage & Table Setting",ple,-,-,no fixed article,plə,El rebost és ple.,lleno,ممتلئ,full,334.0
+U07,"Household Details, Storage & Table Setting",el safareig,-,el,article noun,sə·fə·ɾet,Fem la bugada al safareig.,lavadero,غرفة الغسيل,laundry room,335.0
+U07,"Household Details, Storage & Table Setting",el terrat,-,el,article noun,tə·rat,Pugem al terrat a veure el sol.,azotea,سطح المنزل,rooftop,337.0
+U07,"Household Details, Storage & Table Setting",les golfes,-,les,article noun,gol·fəs,Guardem caixes a les golfes.,ático,علية,attic,338.0
+U07,"Household Details, Storage & Table Setting",l’escala,-,,no fixed article,l’əs·ka·lə,Puja per l’escala.,escalera,سلم,stairs,339.0
+U07,"Household Details, Storage & Table Setting",el portal,-,el,article noun,por·tal,El portal de l’edifici és tancat.,portal,مدخل المبنى,building entrance,340.0
+U07,"Household Details, Storage & Table Setting",la teulada,-,la,article noun,təu·la·ðə,La teulada és vermella.,tejado,سقف المنزل,roof,341.0
+U07,"Household Details, Storage & Table Setting",el soterrani,-,el,article noun,so·tə·ra·ni,El cotxe és al soterrani.,sótano,قبو,basement,342.0
+U07,"Household Details, Storage & Table Setting",el sostre,-,el,article noun,sos·trə,El sostre és molt alt.,techo,سقف,ceiling,343.0
+U07,"Household Details, Storage & Table Setting",la finestra,-,la,article noun,fi·nəs·trə,Obre la finestra.,ventana,نافذة,window,344.0
+U07,"Household Details, Storage & Table Setting",la porta,-,la,article noun,por·tə,Tanca la porta.,puerta,باب,door,345.0
+U07,"Household Details, Storage & Table Setting",la façana,-,la,article noun,fə·sa·nə,La façana és molt bonica.,fachada,واجهة,facade,346.0
+U07,"Household Details, Storage & Table Setting",el terra,-,el,article noun,te·rə,El terra és fred.,suelo,أرضية,floor,347.0
+U07,"Household Details, Storage & Table Setting",la trobada,-,la,article noun,tro·βa·ðə,Tenim una trobada familiar avui.,reunión,لقاء,meeting,310.0
+U07,"Household Details, Storage & Table Setting",les estovalles,-,les,article noun,es·to·βa·ʎəs,Posa les estovalles a la taula.,mantel,مفرش الطاولة,tablecloth,311.0
+U07,"Household Details, Storage & Table Setting",els tovallons,-,els,article noun,to·βa·ʎons,"Agafa uns tovallons, si us plau.",servilletas,مناديل المائدة,napkins,312.0
+U07,"Household Details, Storage & Table Setting",els plats,-,els,article noun,plats,Posem els plats a la taula.,platos,أطباق,plates,313.0
+U07,"Household Details, Storage & Table Setting",els coberts,-,els,article noun,ku·βɛrts,Els coberts són al calaix.,cubiertos,أدوات المائدة,cutlery,314.0
+U07,"Household Details, Storage & Table Setting",els gots,-,els,article noun,gots,Els gots són de vidre.,vasos,أكواب,glasses,315.0
+U07,"Household Details, Storage & Table Setting",el cistell,-,el,article noun,sis·teʎ,Porta un cistell amb fruita.,cesta,سلة,basket,316.0
+U07,"Household Details, Storage & Table Setting",la llar,-,la,article noun,ʎar,La llar és molt acollidora.,hogar,منزل / موطن,home,317.0
+U07,"Household Details, Storage & Table Setting",la catifa,-,la,article noun,kə·ti·fə,La catifa és al menjador.,alfombra,سجادة,carpet,318.0
+U07,"Household Details, Storage & Table Setting",el finestral,-,el,article noun,,El finestral deixa entrar molta llum.,ventanal,,large window,
+U07,"Household Details, Storage & Table Setting",el pati,-,el,article noun,,Els nens juguen al pati.,patio,,courtyard; patio,
+U07,"Household Details, Storage & Table Setting",el pot,-,el,article noun,,El sucre és dins del pot.,bote; tarro,,jar; pot,
+U07,"Household Details, Storage & Table Setting",qualsevol,-,-,no fixed article,kwal·sə·βol,Pots triar qualsevol llibre.,cualquier,أي,any,328.0
+U08,"Food, Ingredients & Cooking",afegir,-,-,no fixed article,ə·fə·ʒir,Cal afegir sal a la sopa.,añadir,يضيف,to add,373.0
+U08,"Food, Ingredients & Cooking",pelar,-,-,no fixed article,pə·lar,Pela les patates.,pelar,يقشر,to peel,374.0
+U08,"Food, Ingredients & Cooking",fregir,-,-,no fixed article,frə·ʒir,Fregim els ous a la paella.,freír,يقلي,to fry,375.0
+U08,"Food, Ingredients & Cooking",ratllar,-,-,no fixed article,rə·ʎar,Ratlla el formatge.,rallar,يبشر,to grate,376.0
+U08,"Food, Ingredients & Cooking",les nous,-,les,article noun,nous,Afegeix nous a l’amanida.,nueces,جوز,walnuts,377.0
+U08,"Food, Ingredients & Cooking",el peix,-,el,article noun,pɛʃ,Avui cuinarem peix fresc per sopar.,pez,سمك,fish,15.0
+U08,"Food, Ingredients & Cooking",la poma,-,la,article noun,pɔ·mə,Vull una poma per berenar.,manzana,تفاحة,apple,23.0
+U08,"Food, Ingredients & Cooking",la cassola,-,la,article noun,kə·sɔ·lə,La cassola és plena de sopa.,cazuela,قدر,pot,53.0
+U08,"Food, Ingredients & Cooking",la pansa,-,la,article noun,pan·sə,M’agrada posar panses a l’amanida.,pasa,زبيب,raisin,56.0
+U08,"Food, Ingredients & Cooking",l’enciam,-,l’,article noun,ən·si·am,L’enciam està fresc.,lechuga,خس,lettuce,59.0
+U08,"Food, Ingredients & Cooking",l’arròs,-,l’,article noun,ə·rɔs,L’arròs és un aliment bàsic.,arroz,أرز,rice,62.0
+U08,"Food, Ingredients & Cooking",àpat,-,,no fixed article,,Fem un bon àpat en família.,comida,وجبة,meal,353.0
+U08,"Food, Ingredients & Cooking",el tall,-,el,article noun,tal,Fes un tall de pa.,trozo / corte,قطعة,cut / slice,354.0
+U08,"Food, Ingredients & Cooking",el davantal,-,el,article noun,də·βan·tal,Porta un davantal per cuinar.,delantal,مريلة المطبخ,apron,355.0
+U08,"Food, Ingredients & Cooking",el nap,-,el,article noun,nap,Talla el nap a trossos.,nabo,لفت,turnip,356.0
+U08,"Food, Ingredients & Cooking",els porros,-,els,article noun,po·rus,Afegim porros a la sopa.,puerros,كراث,leeks,357.0
+U08,"Food, Ingredients & Cooking",el tomàquet,-,el,article noun,to·ma·kət,El tomàquet és molt madur.,tomate,طماطم,tomato,358.0
+U08,"Food, Ingredients & Cooking",els alls,-,els,article noun,aʎs,Afegeix dos alls a la salsa.,ajos,ثوم,garlic,359.0
+U08,"Food, Ingredients & Cooking",el vi negre,-,el,article noun,vi ne·ɣrə,Bevem vi negre amb el sopar.,vino tinto,نبيذ أحمر,red wine,360.0
+U08,"Food, Ingredients & Cooking",les cebes,-,les,article noun,se·βəs,Talla les cebes fines.,cebollas,بصل,onions,361.0
+U08,"Food, Ingredients & Cooking",la carn de vedella,-,la,article noun,karn də βə·ðe·ʎə,Cuinem carn de vedella avui.,carne de ternera,لحم بقر,beef,362.0
+U08,"Food, Ingredients & Cooking",els bolets,-,els,article noun,bu·lets,M’agraden els bolets saltejats.,setas,فطر,mushrooms,363.0
+U08,"Food, Ingredients & Cooking",els ous farcits,-,els,article noun,ous fər·sits,Fem ous farcits per l’àpat.,huevos rellenos,بيض محشي,stuffed eggs,364.0
+U08,"Food, Ingredients & Cooking",les llaunes de tonyina,-,les,article noun,ʎau·nəs də tu·ɲi·nə,Compra llaunes de tonyina.,latas de atún,علب تونة,tuna cans,365.0
+U08,"Food, Ingredients & Cooking",les taronges,-,les,article noun,tə·ron·ʒəs,Mengem taronges de postres.,naranjas,برتقال,oranges,366.0
+U08,"Food, Ingredients & Cooking",enciam,-,,no fixed article,l’en·si·am,Renta l’enciam per l’amanida.,lechuga,خس,lettuce,367.0
+U08,"Food, Ingredients & Cooking",espàtula,-,,no fixed article,l’es·pa·tu·lə,Fes servir l’espàtula per girar-ho.,espátula,ملعقة مسطحة,spatula,368.0
+U08,"Food, Ingredients & Cooking",l’amanida,-,,no fixed article,l’a·mə·ni·ðə,M’agrada l’amanida fresca.,ensalada,سلطة,salad,369.0
+U08,"Food, Ingredients & Cooking",el pebrot,-,el,article noun,pə·βɾot,Talla el pebrot vermell.,pimiento,فلفل,papper,370.0
+U08,"Food, Ingredients & Cooking",el ganivet,-,el,article noun,gə·ni·βet,El ganivet és molt afilat.,cuchillo,سكين,knife,371.0
+U08,"Food, Ingredients & Cooking",el cullerot,-,el,article noun,ku·ʎə·ɾot,Serveix la sopa amb el cullerot.,cucharón,مغرفة,ladle,372.0
+U08,"Food, Ingredients & Cooking",el cigró,-,el,article noun,,El cigró és molt bo en amanida.,garbanzo,,chickpea,
+U08,"Food, Ingredients & Cooking",el formatge,-,el,article noun,,M’agrada el formatge tendre.,queso,,cheese,
+U08,"Food, Ingredients & Cooking",el gel,-,el,article noun,,"Posa gel al got, si us plau.",hielo,,ice,
+U08,"Food, Ingredients & Cooking",el pa,-,el,article noun,,Comprem pa cada matí.,pan,,bread,
+U08,"Food, Ingredients & Cooking",el quilo,-,el,article noun,,Necessito un quilo de tomàquets.,kilo,,kilo,
+U08,"Food, Ingredients & Cooking",el sucre,-,el,article noun,,No hi posis massa sucre.,azúcar,,sugar,
+U08,"Food, Ingredients & Cooking",el vi,-,el,article noun,,Només bec una mica de vi.,vino,,wine,
+U08,"Food, Ingredients & Cooking",la barra de pa,-,la,article noun,,He comprat una barra de pa.,barra de pan,,loaf of bread,
+U08,"Food, Ingredients & Cooking",la carn,-,la,article noun,,Avui cuinem carn amb verdures.,carne,,meat,
+U08,"Food, Ingredients & Cooking",la farina,-,la,article noun,,Ens falta farina per fer el pastís.,harina,,flour,
+U08,"Food, Ingredients & Cooking",la fruita,-,la,article noun,,Menjo fruita cada dia.,fruta,,fruit,
+U08,"Food, Ingredients & Cooking",la pasta,-,la,article noun,,Per sopar farem pasta.,pasta,,pasta,
+U09,"Weather, Repairs & Daily Problems",els retalls dels preus,retall dels preus,els,article noun,rə·taʎz dels prews,Hi ha retalls dels preus a la botiga.,recortes de precios,تخفيضات أسعار,price cuts,390.0
+U09,"Weather, Repairs & Daily Problems",els descomptes dels preus,descompte dels preus,els,article noun,dəs·kom·təs dels prews,Ofereixen descomptes dels preus.,descuentos de precios,خصومات أسعار,price discounts,391.0
+U09,"Weather, Repairs & Daily Problems",porucs,poruc,-,no fixed article,pu·ruks,Els comerciants estan porucs.,miedosos,خائفون,fearful,392.0
+U09,"Weather, Repairs & Daily Problems",els comerciants estan porucs,-,-,phrase / expression,-,Els comerciants estan porucs avui.,los comerciantes tienen miedo,التجار خائفون,shopkeepers are afraid,393.0
+U09,"Weather, Repairs & Daily Problems",el preu,-,el,article noun,prew,El preu és molt alt.,precio,سعر,price,380.0
+U09,"Weather, Repairs & Daily Problems",fotrem,-,-,no fixed article,fo·trem,Fotrem un bon dinar.,haremos / comeremos,سنأكل / سنفعل,we'll do / we'll have,381.0
+U09,"Weather, Repairs & Daily Problems",el manyà,-,el,article noun,mə·ɲa,Truca al manyà per la porta.,cerrajero,صانع أقفال,locksmith,382.0
+U09,"Weather, Repairs & Daily Problems",aixeta,-,,no fixed article,l’ai·ʃe·tə,Tanca l’aixeta.,grifo,صنبور,tap,383.0
+U09,"Weather, Repairs & Daily Problems",els endolls,-,els,article noun,en·doʎs,Els endolls són a la paret.,enchufes,مقابس كهرباء,plugs,384.0
+U09,"Weather, Repairs & Daily Problems",el ocell,ocell,el,article noun,o·seʎ,L’ocell vola pel cel.,pájaro,طائر,bird,385.0
+U04,City Places & Directions,el vol,vol,el,article noun,bol,El vol surt a les vuit.,vuelo,رحلة طيران,flight,386.0
+U09,"Weather, Repairs & Daily Problems",trencar,trencar,-,no fixed article,trən·kar,Va trencar el got.,romper,يكسر,to break,387.0
+U09,"Weather, Repairs & Daily Problems",dur,dur,-,no fixed article,dur,El pa és molt dur.,duro,قاسٍ,hard,388.0
+U09,"Weather, Repairs & Daily Problems",aviat,aviat,-,no fixed article,a·βi·at,Arribaré aviat.,pronto,قريبًا,soon,389.0
+U09,"Weather, Repairs & Daily Problems",la pluja,-,la,article noun,plu·ʒə,Avui hi ha molta pluja.,lluvia,مطر,rain,378.0
+U09,"Weather, Repairs & Daily Problems",plovia,-,-,no fixed article,plu·βi·ə,Ahir plovia molt.,llovía,كان يمطر,it was raining,379.0
+U09,"Weather, Repairs & Daily Problems",els núvols,núvol,els,article noun,nu·βols,Hi ha molts núvols.,nubes,غيوم,clouds,437.0
+U09,"Weather, Repairs & Daily Problems",Fa vent,-,-,phrase / expression,fa vent,Avui fa vent.,hace viento,يوجد رياح,it’s windy,438.0
+U09,"Weather, Repairs & Daily Problems",Fa sol,-,-,phrase / expression,fa sol,Avui fa sol.,hace sol,الجو مشمس,it’s sunny,439.0
+U09,"Weather, Repairs & Daily Problems",Plou,ploure,-,no fixed article,plow,Avui plou.,llueve,تمطر,it rains,440.0
+U09,"Weather, Repairs & Daily Problems",Neva,nevar,-,no fixed article,ne·βə,A l’hivern neva.,nieva,تتساقط الثلوج,it snows,441.0
+U09,"Weather, Repairs & Daily Problems",la boira,boira,la,article noun,boi·rə,Hi ha boira al matí.,niebla,ضباب,fog,442.0
+U09,"Weather, Repairs & Daily Problems",Està ennuvolat,ennuvolar-se,-,phrase / expression,es·ta en·nu·βu·lat,Avui està ennuvolat.,está nublado,الجو غائم,it's cloudy,479.0
+U09,"Weather, Repairs & Daily Problems",Està assolellat,assolellar-se,-,phrase / expression,es·ta ə·so·ʎa·lat,El dia està assolellat.,está soleado,الجو مشمس,it's sunny,480.0
+U09,"Weather, Repairs & Daily Problems",Està plovent,ploure,-,phrase / expression,es·ta plo·βent,Està plovent molt.,está lloviendo,إنها تمطر,it's raining,481.0
+U09,"Weather, Repairs & Daily Problems",Hi ha llamps i trons,-,-,phrase / expression,i a ʎamps i trons,A la nit hi ha llamps i trons.,hay rayos y truenos,هناك برق ورعد,there is thunder and lightning,482.0
+U09,"Weather, Repairs & Daily Problems",Fa una nevada,-,-,phrase / expression,fa u·nə nə·βa·ðə,Avui fa una nevada forta.,hay una nevada,هناك عاصفة ثلجية,there is a snowfall,483.0
+U09,"Weather, Repairs & Daily Problems",el clima,-,el,article noun,,El clima d’aquesta zona és suau.,clima,,climate,
+U10,"Clothing, Size & Materials",la sabata,-,la,article noun,sə·bà·tə,He comprat una sabata nova.,zapato,حذاء,shoe,46.0
+U10,"Clothing, Size & Materials",la camisa,-,la,article noun,kə·mi·zə,Porta una camisa blanca.,camisa,قميص,shirt,67.0
+U10,"Clothing, Size & Materials",els texans,texà,els,article noun,tə·ʃans,Compra uns texans nous.,vaqueros,جينز,jeans,394.0
+U10,"Clothing, Size & Materials",les sabates,sabata,les,article noun,sə·βa·təs,M’agraden aquestes sabates.,zapatos,أحذية,shoes,395.0
+U10,"Clothing, Size & Materials",el jersei,jersei,el,article noun,ʒər·zɛi,Porta un jersei blau.,jersey,كنزة,sweater,396.0
+U10,"Clothing, Size & Materials",el barret,barret,el,article noun,bə·ret,Porta un barret negre.,sombrero,قبعة,hat,407.0
+U10,"Clothing, Size & Materials",la samarreta,samarreta,la,article noun,sə·mə·re·tə,Porta una samarreta blanca.,camiseta,قميص,t-shirt,409.0
+U10,"Clothing, Size & Materials",la gorra,gorra,la,article noun,go·rə,Ell porta gorra.,gorra,قبعة,cap,410.0
+U10,"Clothing, Size & Materials",els mitjons,mitjó,els,article noun,mi·ʧons,Compra mitjons nous.,calcetines,جوارب,socks,411.0
+U10,"Clothing, Size & Materials",la faldilla,faldilla,la,article noun,fəl·di·ʎə,Ella porta faldilla.,falda,تنورة,skirt,412.0
+U10,"Clothing, Size & Materials",el metall,-,el,article noun,mə·taʎ,Treballem amb metall imprès.,metal,معدن,metal,90.0
+U10,"Clothing, Size & Materials",de fusta,-,-,phrase / expression,de fus·tə,La taula és de fusta.,de madera,من خشب,made of wood,414.0
+U10,"Clothing, Size & Materials",de vidre,-,-,phrase / expression,de βi·ðɾə,El got és de vidre.,de vidrio,من زجاج,glass,415.0
+U10,"Clothing, Size & Materials",de plàstic,-,-,phrase / expression,de plas·tik,La cadira és de plàstic.,de plástico,من بلاستيك,plastic,416.0
+U10,"Clothing, Size & Materials",de ferro,-,-,phrase / expression,de fə·ru,La porta és de ferro.,de hierro,من حديد,iron,417.0
+U10,"Clothing, Size & Materials",de ceràmica,-,-,phrase / expression,de sə·ra·mi·kə,El plat és de ceràmica.,de cerámica,من سيراميك,ceramic,418.0
+U10,"Clothing, Size & Materials",de pedra,-,-,phrase / expression,de pɛ·ðɾə,La casa és de pedra.,de piedra,من حجر,stone,419.0
+U10,"Clothing, Size & Materials",de pell,-,-,phrase / expression,de peʎ,La jaqueta és de pell.,de piel,من جلد,leather,420.0
+U10,"Clothing, Size & Materials",llarg,llarg,-,no fixed article,ʎark,És un carrer llarg.,largo,طويل,long,397.0
+U10,"Clothing, Size & Materials",curt,curt,-,no fixed article,kurt,El vestit és curt.,corto,قصير,short,398.0
+U10,"Clothing, Size & Materials",estret,estret,-,no fixed article,əs·tret,El passadís és estret.,estrecho,ضيق,narrow,399.0
+U10,"Clothing, Size & Materials",ample,ample,-,no fixed article,am·plə,El carrer és ample.,ancho,واسع,wide,400.0
+U10,"Clothing, Size & Materials",gruixut,gruixut,-,no fixed article,ɡru·ʃut,El llibre és gruixut.,grueso,سميك,thick,401.0
+U10,"Clothing, Size & Materials",nou,nou,-,no fixed article,now,El cotxe és nou.,nuevo,جديد,new,402.0
+U10,"Clothing, Size & Materials",vell,vell,-,no fixed article,beʎ,El moble és vell.,viejo,قديم,old,403.0
+U10,"Clothing, Size & Materials",petit,petit,-,no fixed article,pə·tit,És un poble petit.,pequeño,صغير,small,404.0
+U10,"Clothing, Size & Materials",gran,gran,-,no fixed article,ɡran,La casa és gran.,grande,كبير,big,405.0
+U10,"Clothing, Size & Materials",net,net,-,no fixed article,net,El got és net.,limpio,نظيف,clean,406.0
+U10,"Clothing, Size & Materials",neta,net,-,no fixed article,nɛ·tə,La taula està neta.,limpia,نظيفة,clean (fem.),408.0
+U10,"Clothing, Size & Materials",vella,vell,-,no fixed article,beʎə,La casa és vella.,vieja,قديمة,old (fem.),413.0
+U10,"Clothing, Size & Materials",el cuir,-,el,article noun,,La jaqueta és de cuir.,cuero,,leather,
+U10,"Clothing, Size & Materials",la jaqueta,-,la,article noun,,"Agafa la jaqueta, que fa fred.",chaqueta,,jacket,
+U11,"Quantifiers, Mini-Phrases & Discourse Tools",Plogui o faci sol,-,-,phrase / expression,plo·ɣi u fa·si sol,Sortim a caminar plogui o faci sol.,llueva o haga sol,سواء أمطرت أو أشرقت الشمس,rain or shine,470.0
+U11,"Quantifiers, Mini-Phrases & Discourse Tools",Ens hem de moure,moure,-,phrase / expression,enz em də mow·rə,Ens hem de moure ràpid.,tenemos que movernos,يجب أن نتحرك,we must move,471.0
+U11,"Quantifiers, Mini-Phrases & Discourse Tools",per tot arreu,-,-,phrase / expression,pər tot ə·rɛw,Hi ha gent per tot arreu.,por todas partes,في كل مكان,everywhere,472.0
+U11,"Quantifiers, Mini-Phrases & Discourse Tools",arreu,arreu,-,no fixed article,ə·rɛw,Hi ha flors arreu.,por todas partes,في كل مكان,everywhere,473.0
+U11,"Quantifiers, Mini-Phrases & Discourse Tools",enlloc,enlloc,-,no fixed article,ən·ʎok,No trobo el llibre enlloc.,en ningún sitio,في أي مكان,nowhere,474.0
+U11,"Quantifiers, Mini-Phrases & Discourse Tools",respecte,respectar,—,no fixed article,rəs·pɛk·tə,Això és tot pel que fa al respecte.,relación,بخصوص,regarding,76.0
+U11,"Quantifiers, Mini-Phrases & Discourse Tools",per,-,—,no fixed article,pər,Aquest llibre és per a l’estudiant.,para,لِـ,for,120.0
+U11,"Quantifiers, Mini-Phrases & Discourse Tools",la cosa,-,la,article noun,kɔ·zə,,cosa,شيء,thing,126.0
+U11,"Quantifiers, Mini-Phrases & Discourse Tools",fins,-,—,no fixed article,fins,,hasta,حتى,until,134.0
+U11,"Quantifiers, Mini-Phrases & Discourse Tools",com,-,—,no fixed article,kom,Com molts ja sabreu…,como,كما,as,135.0
+U11,"Quantifiers, Mini-Phrases & Discourse Tools",de sobte,-,-,phrase / expression,de so·βtə,De sobte va començar a ploure.,de repente,فجأة,suddenly,467.0
+U11,"Quantifiers, Mini-Phrases & Discourse Tools",carregar,carregar,-,no fixed article,kə·rə·ɣar,Carrega la caixa.,cargar,يحمل,to load,435.0
+U11,"Quantifiers, Mini-Phrases & Discourse Tools",moure,moure,-,no fixed article,mow·rə,Hem de moure la taula.,mover,يحرك,to move,436.0
+U11,"Quantifiers, Mini-Phrases & Discourse Tools",els molts,-,els,article noun,mólts,Molts ja ho saben.,muchos,عديد,many,136.0
+U11,"Quantifiers, Mini-Phrases & Discourse Tools",els darrers,-,els,article noun,da·rrérs,Els darrers mesos…,últimos,الأخيرة,last,139.0
+U11,"Quantifiers, Mini-Phrases & Discourse Tools",Qualsevol,qualsevol,-,no fixed article,kwal·sə·βol,Pots triar qualsevol llibre.,cualquier,أي,any,421.0
+U11,"Quantifiers, Mini-Phrases & Discourse Tools",Cert,cert,-,no fixed article,sert,És cert.,cierto,صحيح,certain,422.0
+U11,"Quantifiers, Mini-Phrases & Discourse Tools",Diversos,divers,-,no fixed article,di·βer·sos,Hi ha diversos problemes.,varios,متعدد,several,423.0
+U11,"Quantifiers, Mini-Phrases & Discourse Tools",Cada,cada,-,no fixed article,ka·ðə,Cada dia estudio.,cada,كل,each,424.0
+U11,"Quantifiers, Mini-Phrases & Discourse Tools",Tant,tant,-,no fixed article,tant,Tinc tant temps.,tanto,كثيرًا,so much,425.0
+U11,"Quantifiers, Mini-Phrases & Discourse Tools",Massa,massa,-,no fixed article,ma·sə,És massa tard.,demasiado,كثير جدًا,too much,426.0
+U11,"Quantifiers, Mini-Phrases & Discourse Tools",Prou,prou,-,no fixed article,prou,Ja n’hi ha prou.,suficiente,كافٍ,enough,427.0
+U11,"Quantifiers, Mini-Phrases & Discourse Tools",Força,força,-,no fixed article,for·sə,Hi ha força gent.,bastante,كثيرًا,quite a lot,428.0
+U11,"Quantifiers, Mini-Phrases & Discourse Tools",ja,-,—,no fixed article,ʒá,Ja ho sabem.,ya,بالفعل,already,137.0
+U11,"Quantifiers, Mini-Phrases & Discourse Tools",sabreu,saber,—,no fixed article,sa·bréw,Com molts ja sabreu…,sabréis,ستعرفون,you will know,138.0
+U11,"Quantifiers, Mini-Phrases & Discourse Tools",I tant!,-,-,phrase / expression,i tant,I tant que sí!,¡claro!,طبعًا,of course,429.0
+U11,"Quantifiers, Mini-Phrases & Discourse Tools",De cap manera!,-,-,phrase / expression,de kap mə·ne·ɾə,"No ho faré, de cap manera!",de ninguna manera,مستحيل,no way,430.0
+U11,"Quantifiers, Mini-Phrases & Discourse Tools",cau,caure,-,no fixed article,kaw,L’ocell cau.,cae,يسقط,falls,431.0
+U11,"Quantifiers, Mini-Phrases & Discourse Tools",cau en cap de setmana,-,-,phrase / expression,-,La festa cau en cap de setmana.,cae en fin de semana,يقع في عطلة نهاية الأسبوع,falls on weekend,432.0
+U11,"Quantifiers, Mini-Phrases & Discourse Tools",No t’hi amoïnis,-,-,phrase / expression,-,"No t’hi amoïnis, tot anirà bé.",no te preocupes,لا تقلق,don’t worry,433.0
+U12,Catalan Culture & Community Events,la gimcana,gimcana,la,article noun,ʒim·ka·nə,Fem una gimcana a la festa.,gincana,مسابقة ألعاب,gymkhana,443.0
+U12,Catalan Culture & Community Events,els castells,castell,els,article noun,kəs·teʎs,Fan castells a la plaça.,castillos humanos,أبراج بشرية,human towers,444.0
+U12,Catalan Culture & Community Events,la cobla,cobla,la,article noun,ko·βlə,La cobla toca sardanes.,cobla,فرقة موسيقية,catalan band,445.0
+U12,Catalan Culture & Community Events,els gegants,gegant,els,article noun,ʒə·ɣants,Els gegants ballen.,gigantes,عمالقة,giants,446.0
+U12,Catalan Culture & Community Events,la geganta,geganta,la,article noun,ʒə·ɣan·tə,La geganta és molt alta.,giganta,عملاقة,giant (fem.),447.0
+U12,Catalan Culture & Community Events,enmig,enmig,-,no fixed article,ən·mitʃ,És enmig de la plaça.,en medio,في الوسط,in the middle,448.0
+U12,Catalan Culture & Community Events,groga,groc,-,no fixed article,gro·ɣə,La flor és groga.,amarilla,صفراء,yellow,449.0
+U13,"Body, Accidents & Recovery",alleujar,alleujar,-,no fixed article,a·ʎu·ʒar,Això alleuja el dolor.,aliviar,يخفف,to relieve,450.0
+U13,"Body, Accidents & Recovery",procurar,procurar,-,no fixed article,pro·ku·rar,Procura arribar aviat.,procurar,يحاول,to try,451.0
+U13,"Body, Accidents & Recovery",cedir,cedir,-,no fixed article,sə·ðir,Ha de cedir el pas.,ceder,يتنازل,to yield,452.0
+U13,"Body, Accidents & Recovery",embolicar,embolicar,-,no fixed article,əm·bu·li·kar,Embolica el regal.,envolver,يلف,to wrap,453.0
+U13,"Body, Accidents & Recovery",aplicar,aplicar,-,no fixed article,ə·pli·kar,Aplica la crema.,aplicar,يطبق,to apply,454.0
+U13,"Body, Accidents & Recovery",trucar,trucar,-,no fixed article,tru·kar,Truca al metge.,llamar,يتصل,to call,455.0
+U13,"Body, Accidents & Recovery",cremar,cremar,-,no fixed article,krə·mar,Va cremar el paper.,quemar,يحرق,to burn,456.0
+U13,"Body, Accidents & Recovery",relliscar,relliscar,-,no fixed article,rə·ʎis·kar,Ha relliscat al carrer.,resbalar,ينزلق,to slip,459.0
+U13,"Body, Accidents & Recovery",espantar,espantar,-,no fixed article,əs·pan·tar,El soroll espanta el nen.,asustar,يخيف,to scare,460.0
+U13,"Body, Accidents & Recovery",les llanternes,llanterna,les,article noun,ʎan·tɛr·nəs,Porten llanternes.,linternas,مصابيح يدوية,flashlights,461.0
+U13,"Body, Accidents & Recovery",les arrels,arrel,les,article noun,a·reʎs,Les arrels són profundes.,raíces,جذور,roots,462.0
+U13,"Body, Accidents & Recovery",ensopegar,ensopegar,-,no fixed article,en·su·pə·ɣar,Ha ensopegat amb la pedra.,tropezar,يتعثر,to stumble,463.0
+U13,"Body, Accidents & Recovery",la sorra,sorra,la,article noun,so·rə,La platja té sorra fina.,arena,رمل,sand,464.0
+U13,"Body, Accidents & Recovery",la pomada,pomada,la,article noun,po·ma·ðə,Posa pomada a la ferida.,pomada,مرهم,ointment,465.0
+U13,"Body, Accidents & Recovery",rebre,rebre,-,no fixed article,rɛ·βɾə,Ha rebut una carta.,recibir,يتلقى,to receive,466.0
+U13,"Body, Accidents & Recovery",el colze,-,el,article noun,kol·zə,M’he fet mal al colze.,codo,كوع,elbow,68.0
+U13,"Body, Accidents & Recovery",el dit,dit,el,article noun,dit,M’he fet mal al dit.,dedo,إصبع,finger,457.0
+U13,"Body, Accidents & Recovery",el turmell,turmell,el,article noun,tur·meʎ,M’he torçat el turmell.,tobillo,كاحل,ankle,458.0
+U13,"Body, Accidents & Recovery",t'has marejat,marejar-se,-,phrase / expression,tas mə·ɾə·ʒat,T'has marejat amb la calor?,te has mareado,أصبت بالدوار,did you get dizzy,475.0
+U13,"Body, Accidents & Recovery",el mal de gest,mal de gest,el,article noun,mal də ʒest,Té mal de gest al coll.,tortícolis,التواء الرقبة,stiff neck,476.0
+U13,"Body, Accidents & Recovery",no para quiet,parar,-,phrase / expression,no pa·ɾə ki·et,El nen no para quiet.,no para quieto,لا يبقى ساكنًا,can't stay still,477.0
+U13,"Body, Accidents & Recovery",el cap,-,el,article noun,,Em fa mal el cap.,cabeza,,head,
+U13,"Body, Accidents & Recovery",el coll,-,el,article noun,,Porta una bufanda al coll.,cuello,,neck,
+U13,"Body, Accidents & Recovery",la panxa,-,la,article noun,,Després de dinar em fa mal la panxa.,barriga,,belly,
+U13,"Body, Accidents & Recovery",el remei,-,el,article noun,,Aquest remei m’ha anat bé.,remedio,,remedy,
+U13,"Body, Accidents & Recovery",el servei mèdic,-,el,article noun,,Truca al servei mèdic si et trobes malament.,servicio médico,,medical service,
+U13,"Body, Accidents & Recovery",el símptoma,-,el,article noun,,La febre és un símptoma comú.,síntoma,,symptom,
+U13,"Body, Accidents & Recovery",la febre,-,la,article noun,,Té febre des d’ahir.,fiebre,,fever,
+U13,"Body, Accidents & Recovery",la salut,-,la,article noun,,La salut és molt important.,salud,,health,
+U14,"Study, Goals & Progress",perdent,perdre,-,no fixed article,pər·ðent,Està perdent diners.,perdiendo,يخسر,losing,490.0
+U14,"Study, Goals & Progress",guanyant,guanyar,-,no fixed article,ɡwa·ɲant,Està guanyant el partit.,ganando,يربح,winning,491.0
+U14,"Study, Goals & Progress",els reptes,repte,els,article noun,rep·təs,M’agraden els reptes difícils.,retos,تحديات,challenges,492.0
+U14,"Study, Goals & Progress",reprendre,reprendre,-,no fixed article,rə·prɛn·drə,Va reprendre la feina després de vacances.,reanudar,يستأنف,to resume,484.0
+U14,"Study, Goals & Progress",interrompre,interrompre,-,no fixed article,in·tə·rom·prə,No interrompis la classe.,interrumpir,يقاطع,to interrupt,485.0
+U14,"Study, Goals & Progress",atrafegat,atrafegat,-,no fixed article,a·trə·fə·ɣat,Estic molt atrafegat avui.,atareado,مشغول جدًا,busy,486.0
+U14,"Study, Goals & Progress",cursar,cursar,-,no fixed article,kur·sar,Va cursar estudis de medicina.,cursar,يتابع / يدرس,to study / to take (a course),487.0
+U14,"Study, Goals & Progress",propòsit de,propòsit,-,phrase / expression,pru·pò·zit də,Tinc el propòsit de fer esport.,propósito de,نية / هدف,intention of,488.0
+U14,"Study, Goals & Progress",els estalvis,estalvi,els,article noun,es·tal·βis,Tinc estalvis al banc.,ahorros,مدخرات,savings,489.0
+U14,"Study, Goals & Progress",el pla,-,el,article noun,,Tenim un pla per acabar la feina avui.,plan,,plan,
+U14,"Study, Goals & Progress",el propòsit,-,el,article noun,,El meu propòsit és parlar més català.,propósito,,purpose; goal,
+U14,"Study, Goals & Progress",la intenció,-,la,article noun,,La meva intenció és acabar avui.,intención,,intention,
+U15,"Nature, Plants & Outdoor Gear",el paisatge,-,el,article noun,,Des d’aquí es veu un paisatge preciós.,paisaje,,landscape,
+U15,"Nature, Plants & Outdoor Gear",el taronger,-,el,article noun,,Al camp hi ha un taronger.,naranjo,,orange tree,
+U15,"Nature, Plants & Outdoor Gear",la pomera,-,la,article noun,,La pomera fa ombra a l’estiu.,manzano,,apple tree,
+U15,"Nature, Plants & Outdoor Gear",el presseguer,-,el,article noun,,El presseguer ja té flors.,melocotonero,,peach tree,
+U15,"Nature, Plants & Outdoor Gear",el cirerer,-,el,article noun,,El cirerer és ple de flors.,cerezo,,cherry tree,
+U15,"Nature, Plants & Outdoor Gear",el llimoner,-,el,article noun,,El llimoner fa molta olor.,limonero,,lemon tree,
+U15,"Nature, Plants & Outdoor Gear",la tomaquera,-,la,article noun,,La tomaquera necessita aigua.,tomatera,,tomato plant,
+U15,"Nature, Plants & Outdoor Gear",el bananer,-,el,article noun,,El bananer és molt alt.,bananero,,banana plant,
+U15,"Nature, Plants & Outdoor Gear",l’avellaner,-,l’,article noun,,L’avellaner creix bé aquí.,avellano,,hazelnut tree,
+U15,"Nature, Plants & Outdoor Gear",la mongetera,-,la,article noun,,La mongetera s’enfila per la canya.,judiera,,bean plant,
+U15,"Nature, Plants & Outdoor Gear",l’olivera,-,l’,article noun,,L’olivera és molt típica del Mediterrani.,olivo,,olive tree,
+U15,"Nature, Plants & Outdoor Gear",l’ametller,-,l’,article noun,,L’ametller floreix aviat.,almendro,,almond tree,
+U15,"Nature, Plants & Outdoor Gear",la motxilla,-,la,article noun,,Porto l’aigua a la motxilla.,mochila,,backpack,
+U15,"Nature, Plants & Outdoor Gear",el sac de dormir,-,el,article noun,,A la nit fa fred dins del sac de dormir.,saco de dormir,,sleeping bag,
+U15,"Nature, Plants & Outdoor Gear",els prismàtics,-,els,article noun,,Amb els prismàtics ho veig millor.,prismáticos,,binoculars,
+U15,"Nature, Plants & Outdoor Gear",la llanterna,-,la,article noun,,Necessitem una llanterna per caminar de nit.,linterna,,flashlight,
+U15,"Nature, Plants & Outdoor Gear",la càmera,-,la,article noun,,He portat la càmera per fer fotos.,cámara,,camera,
+U15,"Nature, Plants & Outdoor Gear",la brúixola,-,la,article noun,,La brúixola ens ajuda a orientar-nos.,brújula,,compass,
+U15,"Nature, Plants & Outdoor Gear",els bastons,-,els,article noun,,Els bastons van bé per pujar la muntanya.,bastones,,poles,
+U15,"Nature, Plants & Outdoor Gear",la tenda de campanya,-,la,article noun,,Muntarem la tenda de campanya abans de sopar.,tienda de campaña,,tent,
