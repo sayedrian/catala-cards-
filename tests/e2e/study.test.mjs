@@ -394,3 +394,59 @@ test('empty queue: Start disabled when nothing is due and the new limit is 0', a
   assert.ok(s === null || s.settings.newPerDay === 0 || true);
   await ctx.close();
 });
+
+test('"Explain more": only after the answer, only when content exists; examples, use, family; speaks examples', async () => {
+  const ctx = await newContext(browser);
+  const p = await openApp(ctx, server.url);
+  const withCtx = await p.evaluate(async () => Object.keys((await (await fetch('data/context.json')).json()).items));
+  await p.click('#startBtn');
+  let checkedWith = false, checkedWithout = false;
+  for (let i = 0; i < 15 && !(checkedWith && checkedWithout); i++) {
+    assert.equal(await visible(p, '#explainBtn'), false, 'hidden before the answer');
+    await p.click('#showBtn');
+    const ca = await p.$eval('#card .ca', e => e.textContent);
+    const has = await p.evaluate(async (ca, ids) => {
+      const d = await (await fetch('data/cards.json')).json();
+      const it = d.items.find(i => i.ca === ca);
+      return ids.includes(it.id);
+    }, ca, withCtx);
+    assert.equal(await visible(p, '#explainBtn'), has, `${ca}: button only when content exists`);
+    if (has && !checkedWith) {
+      assert.equal(await visible(p, '#explain'), false, 'panel closed until tapped');
+      await p.click('#explainBtn');
+      assert.equal(await visible(p, '#explain'), true);
+      const txt = await text(p, '#explain');
+      for (const h of ['Examples', 'How to use it', 'Word family']) assert.match(txt, new RegExp(h, 'i'));
+      assert.equal(await p.$$eval('#explain .exrow', r => r.length), 3);
+      assert.ok(await p.$('#explain .ar[dir=rtl]'), 'Arabic right-to-left');
+      assert.match(await text(p, '#explainBtn'), /Hide/);
+      await p.click('#explain [data-say="1"]');
+      const spoken = await p.evaluate(() => window.__spoken.at(-1));
+      assert.equal(spoken.lang, 'ca-ES');
+      assert.equal(spoken.text, await p.$eval('#explain .exrow:nth-of-type(2) .exca', e => e.textContent));
+      await p.click('#recBtn'); await sleep(200); await p.click('#recBtn');   // re-render keeps the panel open
+      await p.waitForFunction(() => !document.querySelector('#meBtn').hidden);
+      assert.equal(await visible(p, '#explain'), true);
+      await p.click('#explainBtn');
+      assert.equal(await visible(p, '#explain'), false, 'tap again hides it');
+      await p.click('#explainBtn');
+      checkedWith = true;
+    }
+    if (!has) checkedWithout = true;
+    await p.click('.rate.easy');
+    if (await visible(p, '#done')) break;
+    assert.equal(await visible(p, '#explain'), false, 'next card: panel closed');
+  }
+  assert.ok(checkedWith, 'saw a card with content');
+  await ctx.close();
+});
+
+test('"Explain more" never on conjugation cards', async () => {
+  const ctx = await newContext(browser);
+  const p = await openApp(ctx, server.url);
+  await chooseMode(p, 'conj');
+  await p.click('#startBtn');
+  await p.click('#showBtn');
+  assert.equal(await visible(p, '#explainBtn'), false);
+  await ctx.close();
+});

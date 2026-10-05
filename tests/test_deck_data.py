@@ -85,5 +85,36 @@ class DeckData(unittest.TestCase):
             self.fail("build_deck.py output differs from the committed data/cards.json")
 
 
+class ContextData(unittest.TestCase):
+    """data/context.json ("Explain more"): valid, matches the batches, linked to real items."""
+
+    def test_build_is_valid_and_identical(self):
+        before = (ROOT / "data/context.json").read_bytes()
+        out = subprocess.run([sys.executable, str(ROOT / "tools/build_context.py")], capture_output=True, text=True, cwd=ROOT)
+        self.assertEqual(out.returncode, 0, out.stdout + out.stderr)
+        if (ROOT / "data/context.json").read_bytes() != before:
+            (ROOT / "data/context.json").write_bytes(before)
+            self.fail("build_context.py output differs from the committed data/context.json")
+
+    def test_examples_use_the_word(self):
+        deck = {i["id"]: i for i in json.loads(CARDS.read_text(encoding="utf-8"))["items"]}
+        ctx = json.loads((ROOT / "data/context.json").read_text(encoding="utf-8"))["items"]
+        self.assertGreaterEqual(len(ctx), 100)
+        missing = []
+        for iid, c in ctx.items():
+            it = deck[iid]
+            self.assertTrue(it.get("es") or it.get("en") or it.get("ar"), f'{it["ca"]}: no meaning card, button never shows')
+            # stem of the main word (without article / pronoun), first 3 letters, accents ignored
+            import unicodedata
+            plain = lambda s: unicodedata.normalize("NFD", s.lower()).encode("ascii", "ignore").decode()
+            word = re.sub(r"^(el|la|els|les|l['’]|un|una)\s*", "", it["ca"].lower()).split()[0].split("-")[0]
+            stem = plain(word)[:3]
+            for e in c["ex"]:
+                if stem not in plain(e["ca"]):
+                    missing.append(f'{it["ca"]}: {e["ca"]}')
+        # irregular verb forms (vaig, tinc, puc…) may not share the stem; allow a few
+        self.assertLessEqual(len(missing), len(ctx) // 3, "\n".join(missing))
+
+
 if __name__ == "__main__":
     unittest.main()

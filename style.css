@@ -73,6 +73,20 @@ button:disabled { opacity: .5; }
 .stat span { font-size: .75rem; color: var(--muted); }
 
 .sessionBar { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 6px; }
+button.explain { border-color: var(--gold); font-weight: 600; }
+.explain { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 14px 16px; margin-top: 12px; }
+.explain h3 { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 12px 0 6px; }
+.explain h3:first-child { margin-top: 0; }
+.explain ul { margin: 0; padding-left: 18px; }
+.explain li { margin-bottom: 6px; }
+.explain .exrow { display: flex; gap: 8px; align-items: flex-start; padding: 8px 0; border-bottom: 1px dashed var(--line); }
+.explain .exrow:last-of-type { border-bottom: none; }
+.explain .exrow .chip { padding: 4px 8px; flex: none; }
+.explain .exca { font-weight: 600; }
+.explain .extr { font-size: .9rem; color: var(--muted); }
+.explain .extr .ar { font-size: 1.05rem; color: var(--ink); }
+.explain .fam { list-style: none; padding: 0; }
+.explain .fam b { font-weight: 600; }
 button.know { border-color: var(--good); color: var(--good-text); font-weight: 600; }
 .toast { display: flex; justify-content: space-between; align-items: center; gap: 8px; background: var(--ink); color: var(--bg);
   border-radius: 10px; padding: 6px 12px; margin-bottom: 8px; font-size: .9rem; }

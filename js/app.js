@@ -7,13 +7,14 @@ import {
 import { speak, hasCatalanVoice, canRecord, startRecording, stopRecording, isRecording, play } from './audio.js';
 import { suggest } from './translate.js';
 
-export const VERSION = 'v3';
+export const VERSION = 'v4';
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const norm = s => String(s || '').toLowerCase().replace(/'/g, '’').replace(/\s+/g, ' ').trim();
 const bare = s => norm(s).replace(/^(el|la|els|les|l’|un|una|uns|unes)\s*/, '');
 
 let deck = { items: [], units: {} };
+let context = {};   // "Explain more" content: item id -> { ex, use, family }
 let state = store.emptyState();
 let items = [];
 let byId = new Map();
@@ -124,7 +125,7 @@ function nextCard() {
   else if (session.queue.length) c = session.queue.shift();
   else if (session.pending.length) c = session.pending.shift();   // learn ahead: nothing else left
   if (!c) return endSession();
-  session.card = c; session.revealed = false; session.recUrl = null;
+  session.card = c; session.revealed = false; session.recUrl = null; session.explain = false;
   renderCard();
 }
 
@@ -183,6 +184,13 @@ function renderCard() {
   $('#meBtn').hidden = $('#compareBtn').hidden = !session.recUrl;
   $('#showBtn').hidden = revealed;
   $('#rateRow').hidden = !revealed;
+  // "Explain more": only after the answer, only for meaning cards that have content
+  const ctx = c.kind !== 'c' && contextFor(it);
+  $('#explainBtn').hidden = !(revealed && ctx);
+  $('#explainBtn').setAttribute('aria-expanded', String(!!session.explain));
+  $('#explainBtn').textContent = session.explain ? '💡 Hide explanation' : '💡 Explain more';
+  $('#explain').hidden = !(revealed && ctx && session.explain);
+  if (revealed && ctx && session.explain) renderExplain(ctx);
   if (revealed) {
     const p = state.progress[c.id];
     document.querySelectorAll('.rate').forEach(b => { b.querySelector('small').textContent = preview(p, +b.dataset.g); });
@@ -190,6 +198,33 @@ function renderCard() {
   const total = session.done + session.queue.length + session.pending.length + 1;
   $('#sessionCount').textContent = `${session.done + 1} / ${total}`;
 }
+
+function contextFor(it) {
+  return context[it.id] || it.context || null;
+}
+
+function renderExplain(ctx) {
+  const ex = (ctx.ex || []).map((e, i) => `<div class="exrow">
+      <button class="chip" data-say="${i}" aria-label="Listen">🔊</button>
+      <div><div class="exca" lang="ca">${esc(e.ca)}</div>
+      <div class="extr">${[e.es && `ES ${esc(e.es)}`, e.en && `EN ${esc(e.en)}`].filter(Boolean).join('<br>')}
+      ${e.ar ? `<div class="ar" lang="ar" dir="rtl">${esc(e.ar)}</div>` : ''}</div></div></div>`).join('');
+  const use = (ctx.use || []).map(u => `<li>${esc(u)}</li>`).join('');
+  const fam = (ctx.family || []).map(f => `<li><b lang="ca">${esc(f.ca)}</b> · ${esc(f.en)}</li>`).join('');
+  $('#explain').innerHTML = (ex ? `<h3>Examples</h3>${ex}` : '') + (use ? `<h3>How to use it</h3><ul>${use}</ul>` : '') +
+    (fam ? `<h3>Word family</h3><ul class="fam">${fam}</ul>` : '');
+}
+
+$('#explainBtn').onclick = () => {
+  session.explain = !session.explain;
+  renderCard();
+  if (session.explain) $('#explain').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+};
+$('#explain').onclick = e => {
+  const b = e.target.closest('[data-say]');
+  const ctx = b && session && contextFor(session.card.item);
+  if (ctx) speak(ctx.ex[+b.dataset.say].ca, state.settings.rate);
+};
 
 function speakText() {
   const { card: c } = session;
@@ -551,6 +586,7 @@ async function init() {
     $('#queueInfo').textContent = 'Could not load the card deck.';
   }
   refreshItems();
+  fetch('data/context.json').then(r => r.json()).then(j => { context = j.items || {}; }).catch(() => {});
   $('#fDeck').value = state.settings.vocabDeck || 'all';
   const opts = topicOptions();
   $('#fTag').innerHTML = opts;
