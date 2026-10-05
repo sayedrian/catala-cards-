@@ -5,9 +5,12 @@ const DB = 'catala-cards';
 const KEY = 'state';
 
 export const DEFAULT_SETTINGS = {
-  newPerDay: 15,
+  newPerDay: 15,          // new vocabulary cards per day
+  conjPerDay: 5,          // new conjugation tables per day
   tenses: ['present', 'perfet', 'perifrastic'],
   rate: 0.9,
+  mode: 'vocab',          // last chosen study mode: 'vocab' | 'conj'
+  vocabDeck: 'all',
 };
 
 export function emptyState() {
@@ -18,7 +21,7 @@ export function emptyState() {
     hidden: [],     // sheet item ids I removed
     priority: {},   // item id -> timestamp (study first)
     settings: { ...DEFAULT_SETTINGS },
-    daily: { date: '', newSeen: 0 },
+    daily: { date: '', newSeen: 0, conjSeen: 0 },
   };
 }
 

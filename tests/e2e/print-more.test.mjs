@@ -73,36 +73,29 @@ test('print weakest picks studied weak cards first; topic mode; empty topic', as
   await ctx.close();
 });
 
-test('settings: tenses change the conjugation deck; new/day and voice speed are saved', async () => {
+test('settings: new/day for vocabulary and conjugation, voice speed; saved; app version shown', async () => {
   const ctx = await newContext(browser);
   const p = await openApp(ctx, server.url);
   await tab(p, 'more');
-  const checked = await p.$$eval('#sTenses input:checked', e => e.map(x => x.value));
-  assert.deepEqual(checked, ['present', 'perfet', 'perifrastic']);
-  await p.click('#sTenses input[value=futur]');
-  await p.click('#sTenses input[value=present]');
-  await p.$eval('#sNew', e => { e.value = '5'; e.dispatchEvent(new Event('change')); });
+  assert.equal(await p.$eval('#sNew', e => e.value), '15');
+  assert.equal(await p.$eval('#sConjNew', e => e.value), '5');
+  await p.$eval('#sNew', e => { e.value = '8'; e.dispatchEvent(new Event('change')); });
+  await p.$eval('#sConjNew', e => { e.value = '3'; e.dispatchEvent(new Event('change')); });
   await p.$eval('#sRate', e => { e.value = '0.7'; e.dispatchEvent(new Event('change')); });
-  const s = await waitSaved(p, st => st.settings.newPerDay === 5 && st.settings.rate === 0.7);
-  assert.deepEqual(s.settings.tenses.sort(), ['futur', 'perfet', 'perifrastic']);
+  await waitSaved(p, st => st.settings.newPerDay === 8 && st.settings.conjPerDay === 3 && st.settings.rate === 0.7);
   await p.click('#testVoice');
   assert.equal((await p.evaluate(() => window.__spoken))[0].text, 'Bon dia, com estàs?');
   await tab(p, 'study');
-  await p.select('#fDeck', 'conj');
-  assert.match(await text(p, '#queueInfo'), /5 new today \(0\/5/);
-  await p.click('#startBtn');
-  const tenses = new Set();
-  for (let i = 0; i < 5; i++) {
-    tenses.add((await text(p, '#card .meta')).split(' · ')[0]);
-    await p.click('#showBtn'); await p.click('.rate.easy');
-  }
-  assert.ok(!tenses.has('Present'), 'present switched off');
-  assert.ok([...tenses].every(t => ['Futur', 'Perfet', 'Passat perifràstic'].includes(t)), [...tenses].join());
+  assert.match(await text(p, '#queueInfo'), /8 new today \(0\/8/);
+  await p.click('#modeSeg input[value=conj]');
+  assert.match(await text(p, '#queueInfo'), /3 new today \(0\/3/);
   await p.reload({ waitUntil: 'networkidle0' });
   await tab(p, 'more');
-  assert.equal(await p.$eval('#sNew', e => e.value), '5');
+  assert.equal(await p.$eval('#sNew', e => e.value), '8');
+  assert.equal(await p.$eval('#sConjNew', e => e.value), '3');
   assert.equal(await p.$eval('#sRate', e => e.value), '0.7');
   assert.match(await text(p, '#about'), /1293 items/);
+  assert.match(await text(p, '#about'), /App version v\d+/);
   await ctx.close();
 });
 
@@ -145,10 +138,11 @@ test('backup: export file, import merges (newer wins, nothing lost)', async () =
   // Phone B: own progress on a different card, then load A's backup
   const ctxB = await newContext(browser);
   const b = await openApp(ctxB, server.url);
-  await b.select('#fDeck', 'conj');
+  await b.click('#modeSeg input[value=conj]');
   await b.click('#startBtn');
   await studyCards(b, 1, 4);
   await b.click('#endBtn');
+  await b.click('#backBtn');
   const bBefore = await waitSaved(b, st => Object.keys(st.progress).length === 1);
   const msg = await importFile(b, OUT + 'backup-a.json');
   assert.match(msg, /Backup loaded: \d+ changes merged/);
@@ -160,7 +154,10 @@ test('backup: export file, import merges (newer wins, nothing lost)', async () =
   }
   assert.equal(Object.keys(s.added).length, 1);
   await tab(b, 'study');
-  assert.equal((await statsOf(b)).learning, union.size);
+  let learning = (await statsOf(b)).learning;
+  await b.click('#modeSeg input[value=vocab]');
+  learning += (await statsOf(b)).learning;
+  assert.equal(learning, union.size, 'vocabulary + conjugation stats add up');
   await tab(b, 'words');
   await b.type('#search', 'paraigua');
   assert.match(await text(b, '#wordList'), /el paraigua/, 'added word visible right after import');

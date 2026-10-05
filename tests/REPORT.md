@@ -1,4 +1,13 @@
-# Test report: 05/10/2026 (Phase 1, cache v2)
+# Test report: 05/10/2026 (Phase 1, version v3)
+
+## Update v3 (your feedback after trying it)
+- **Bug "cards never move to the next word":** in the default deck a verb came 4 times in a row (meaning + 3 conjugation tables, all showing the same big word). Also possible: right after an update, the offline cache could mix old and new files and freeze the buttons. Fixed: vocabulary and conjugation never mix; conjugation goes across verbs (present of anar, dir, estar…); the app now loads fresh files whenever online (cache only offline). New test: no word twice in a row, in both modes.
+- **New "✓ I know it" button** while studying: the word (both directions) → learned, leaves the session; Undo for 8 seconds. On a conjugation card: only that verb × tense. Does not use a new-card slot.
+- **Choose Vocabulary or Conjugation** on the Study screen: own stats, own daily limit (15 / 5, in More), tenses chosen right there; the choice is remembered.
+- Tests now: **88** (31 JS unit + 15 Python + 42 browser), all pass; accessibility 0 violations; layout 48 screenshots OK.
+
+---
+## Earlier: first full test (v2)
 
 **Result: 80 / 80 automated tests pass**, locally and against the live site https://sayedrian.github.io/catala-cards-/.
 Re-run: `npm test` (and `npm run audit`). How: `tests/README.md`.

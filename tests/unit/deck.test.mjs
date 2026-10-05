@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import {
   buildItems, cardsFor, matchesFilter, buildQueue, stats, itemStatus, weakest, deckOf, prioritize,
+  markKnown, meaningCards,
 } from '../../js/deck.js';
 import { review } from '../../js/fsrs.js';
 import { emptyState } from '../../js/store.js';
@@ -56,7 +57,7 @@ test('deckOf + matchesFilter for every deck and tag kind', () => {
   assert.equal(deckOf(items[6]), 'expr');
   const f = (deck, tag = '') => ({ deck, tag });
   assert.ok(matchesFilter(c('w1'), f('all')));
-  assert.ok(matchesFilter(c('v1', 'c'), f('all')));
+  assert.ok(!matchesFilter(c('v1', 'c'), f('all')), 'vocabulary never includes conjugation cards');
   assert.ok(matchesFilter(c('w1'), f('words')));
   assert.ok(!matchesFilter(c('v1'), f('words')));
   assert.ok(matchesFilter(c('v1'), f('verbs')));
@@ -126,6 +127,43 @@ test('prioritize: seen cards become due now, once; unseen ones jump the new queu
   assert.equal(q.fresh[0].id, 'w1|r', 'its reverse card (unlocked, priority) is the first new card');
   s.progress['w1|f'] = review(s.progress['w1|f'], 3, T0 + DAY);
   assert.equal(buildQueue(items, s, { deck: 'words', tag: '' }, T0 + 2 * DAY).due.length, 0, 'answered → normal schedule again');
+});
+
+test('conjugation queue: spread over verbs (one tense across verbs), own daily limit', () => {
+  const s = st();
+  s.settings.tenses = ['present', 'futur'];
+  const v = (id, ca) => ({ id, type: 'verb', ca, es: ca, conj: { present: [1, 2, 3, 4, 5, 6], futur: [1, 2, 3, 4, 5, 6] } });
+  const deck = { units: {}, items: [v('a', 'anar'), v('b', 'dir'), v('c', 'estar')] };
+  const items = buildItems(deck, s);
+  s.settings.conjPerDay = 4;
+  const q = buildQueue(items, s, { deck: 'conj', tag: '' }, T0);
+  assert.deepEqual(q.fresh.map(c => c.id), ['a|c|present', 'b|c|present', 'c|c|present', 'a|c|futur']);
+  for (let i = 1; i < q.fresh.length; i++) assert.notEqual(q.fresh[i].item.id, q.fresh[i - 1].item.id, 'never the same verb twice in a row');
+  s.daily.conjSeen = 4;
+  assert.equal(buildQueue(items, s, { deck: 'conj', tag: '' }, T0).fresh.length, 0, 'conjugation limit used up');
+  assert.equal(buildQueue(items, s, { deck: 'all', tag: '' }, T0).fresh.length, 3, 'vocabulary limit is separate');
+});
+
+test('vocabulary queue: never the same word twice in a row', () => {
+  const s = st();
+  const items = buildItems(realDeck, s);
+  const q = buildQueue(items, s, { deck: 'all', tag: '' }, T0);
+  for (let i = 1; i < q.fresh.length; i++) assert.notEqual(q.fresh[i].item.id, q.fresh[i - 1].item.id);
+  assert.ok(q.fresh.every(c => c.kind !== 'c'));
+});
+
+test('markKnown: cards become learned, returns the old state for Undo', () => {
+  const s = st();
+  const items = buildItems(mini(), s);
+  const w1 = items.find(i => i.id === 'w1');
+  s.progress['w1|f'] = review(undefined, 1, T0);
+  const before = markKnown(w1, s, meaningCards(w1, s), T0);
+  assert.deepEqual(Object.keys(before), ['w1|f', 'w1|r']);
+  assert.equal(before['w1|r'], undefined);
+  assert.equal(itemStatus(w1, s), 'learned');
+  assert.equal(stats(items, s, T0, { deck: 'all', tag: '' }).learned, 2);
+  assert.equal(stats(items, s, T0, { deck: 'conj', tag: '' }).learned, 0, 'stats per mode');
+  assert.equal(buildQueue(items, s, { deck: 'words', tag: '' }, T0 + DAY).due.length, 0, 'not due for a month');
 });
 
 test('stats and itemStatus', () => {

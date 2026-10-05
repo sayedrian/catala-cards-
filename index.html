@@ -23,15 +23,19 @@
     <div id="studyHome">
       <div class="stats" id="stats"></div>
       <div class="panel">
-        <label>Deck
+        <div class="seg mode" id="modeSeg" role="radiogroup" aria-label="What to study">
+          <label><input type="radio" name="mode" value="vocab" checked> 📖 Vocabulary</label>
+          <label><input type="radio" name="mode" value="conj"> 🔤 Conjugation</label>
+        </div>
+        <label id="deckLabel">Cards
           <select id="fDeck">
-            <option value="all">Everything (words, verbs, expressions)</option>
+            <option value="all">All vocabulary (words, verbs, expressions)</option>
             <option value="words">Words</option>
             <option value="verbs">Verbs (meaning)</option>
             <option value="expr">Expressions</option>
-            <option value="conj">Verb conjugations</option>
           </select>
         </label>
+        <fieldset id="sTenses" hidden><legend>Tenses</legend></fieldset>
         <label>Topic
           <select id="fTag"></select>
         </label>
@@ -44,10 +48,12 @@
       </p>
     </div>
 
+    <div id="toast" class="toast" role="status" hidden><span id="toastMsg"></span><button id="undoBtn" class="ghost">Undo</button></div>
     <div id="session" hidden>
       <div class="sessionBar">
         <button id="endBtn" class="ghost">✕ End</button>
         <span id="sessionCount" class="muted"></span>
+        <button id="knowBtn" class="chip know">✓ I know it</button>
       </div>
       <article id="card" class="card"></article>
       <div class="audioRow" id="audioRow">
@@ -136,8 +142,8 @@
   <section id="view-more" class="view" hidden>
     <div class="panel">
       <h2>Settings</h2>
-      <label>New cards per day <input id="sNew" type="number" min="0" max="100"></label>
-      <fieldset id="sTenses"><legend>Conjugation drill: tenses</legend></fieldset>
+      <label>New vocabulary cards per day <input id="sNew" type="number" min="0" max="100"></label>
+      <label>New conjugation tables per day <input id="sConjNew" type="number" min="0" max="50"></label>
       <label>Voice speed <input id="sRate" type="range" min="0.5" max="1.2" step="0.1"></label>
       <button id="testVoice" class="chip">🔊 Test voice: "Bon dia, com estàs?"</button>
     </div>

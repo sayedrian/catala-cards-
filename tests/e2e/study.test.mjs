@@ -1,7 +1,7 @@
 import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  startServer, launch, newContext, openApp, text, visible, statsOf, savedState, waitSaved, studyCards, sleep,
+  startServer, launch, newContext, openApp, text, visible, statsOf, savedState, waitSaved, studyCards, sleep, chooseMode,
 } from './helpers.mjs';
 
 let server, browser;
@@ -14,7 +14,7 @@ test('home: stats, 15 new today, Start enabled, no errors', async () => {
   const s = await statsOf(p);
   assert.equal(s['due now'], 0);
   assert.equal(s['learned'], 0);
-  assert.ok(s['not seen'] > 2500);
+  assert.ok(s['not seen'] > 1500, 'vocabulary cards (conjugation counted in its own mode)');
   assert.match(await text(p, '#queueInfo'), /0 to review · 15 new today \(0\/15 new done\)/);
   assert.equal(await p.$eval('#startBtn', b => b.disabled), false);
   assert.equal(await visible(p, '#session'), false);
@@ -27,8 +27,10 @@ for (const deck of ['all', 'words', 'verbs', 'expr', 'conj']) {
   test(`deck "${deck}": a session runs to the end`, async () => {
     const ctx = await newContext(browser);
     const p = await openApp(ctx, server.url);
-    await p.select('#fDeck', deck);
-    assert.match(await text(p, '#queueInfo'), /15 new today/);
+    if (deck === 'conj') await chooseMode(p, 'conj');
+    else await p.select('#fDeck', deck);
+    const n = deck === 'conj' ? 5 : 15;
+    assert.match(await text(p, '#queueInfo'), new RegExp(`${n} new today`));
     await p.click('#startBtn');
     const kind = await text(p, '#card .kind');
     if (deck === 'conj') assert.match(kind, /^Conjugate/);
@@ -43,11 +45,114 @@ for (const deck of ['all', 'words', 'verbs', 'expr', 'conj']) {
     // Easy on every card: each card leaves the session after one answer
     await studyCards(p, 40, 4);
     assert.ok(await visible(p, '#done'));
-    assert.match(await text(p, '#doneInfo'), /^15 cards reviewed/);
+    assert.match(await text(p, '#doneInfo'), new RegExp(`^${n} cards reviewed`));
     assert.deepEqual(p.errors, []);
     await ctx.close();
   });
 }
+
+test('bug fix: every answer moves to a different word (no word twice in a row)', async () => {
+  for (const mode of ['vocab', 'conj']) {
+    const ctx = await newContext(browser);
+    const p = await openApp(ctx, server.url);
+    await chooseMode(p, mode);
+    await p.click('#startBtn');
+    const seen = [];
+    for (let i = 0; i < 5; i++) {
+      await p.click('#showBtn');
+      seen.push(await p.$eval('#card', c => c.querySelector('.ca').textContent + '|' + c.querySelector('.kind').textContent));
+      await p.click('.rate.good');
+    }
+    for (let i = 1; i < seen.length; i++) assert.notEqual(seen[i].split('|')[0], seen[i - 1].split('|')[0], `${mode}: ${seen.join(', ')}`);
+    if (mode === 'vocab') assert.ok(seen.every(x => !x.includes('Conjugate')), 'no conjugation cards in vocabulary');
+    else assert.ok(seen.every(x => x.includes('Conjugate')));
+    await ctx.close();
+  }
+});
+
+test('mode switch: Vocabulary / Conjugation, each with its own stats, limit and tense choice; remembered', async () => {
+  const ctx = await newContext(browser);
+  let p = await openApp(ctx, server.url);
+  assert.equal(await p.$eval('#modeSeg input[value=vocab]', e => e.checked), true, 'vocabulary by default');
+  assert.equal(await visible(p, '#deckLabel'), true);
+  assert.equal(await visible(p, '#sTenses'), false);
+  const vocabTotal = Object.values(await statsOf(p)).reduce((a, b) => a + b, 0);
+  await chooseMode(p, 'conj');
+  assert.equal(await visible(p, '#deckLabel'), false);
+  assert.equal(await visible(p, '#sTenses'), true);
+  assert.deepEqual(await p.$$eval('#sTenses input:checked', e => e.map(x => x.value)), ['present', 'perfet', 'perifrastic']);
+  const conjTotal = Object.values(await statsOf(p)).reduce((a, b) => a + b, 0);
+  assert.notEqual(conjTotal, vocabTotal, 'stats for the chosen mode');
+  assert.match(await text(p, '#queueInfo'), /5 new today \(0\/5 new done\)/);
+  // switch off present: conjugation cards come from the other tenses only
+  await p.click('#sTenses input[value=present]');
+  await p.click('#startBtn');
+  for (let i = 0; i < 5; i++) {
+    const t = (await text(p, '#card .meta')).split(' · ')[0];
+    assert.ok(['Perfet', 'Passat perifràstic'].includes(t), t);
+    await p.click('#showBtn'); await p.click('.rate.easy');
+  }
+  await waitSaved(p, st => st.daily.conjSeen === 5);
+  await p.click('#backBtn');
+  assert.match(await text(p, '#queueInfo'), /\(5\/5 new done\)/);
+  await chooseMode(p, 'vocab');
+  assert.match(await text(p, '#queueInfo'), /15 new today \(0\/15 new done\)/, 'vocabulary limit untouched');
+  await p.select('#fDeck', 'expr');
+  await chooseMode(p, 'conj');
+  await waitSaved(p, st => st.settings.mode === 'conj' && st.settings.vocabDeck === 'expr');
+  await p.reload({ waitUntil: 'networkidle0' });
+  await p.waitForFunction(() => document.querySelector('#stats').textContent.length > 0);
+  assert.equal(await p.$eval('#modeSeg input[value=conj]', e => e.checked), true, 'mode remembered');
+  await chooseMode(p, 'vocab');
+  assert.equal(await p.$eval('#fDeck', e => e.value), 'expr', 'vocabulary deck remembered');
+  await ctx.close();
+});
+
+test('"I know it": word → learned, both directions, leaves the session; Undo brings it back', async () => {
+  const ctx = await newContext(browser);
+  const p = await openApp(ctx, server.url);
+  await p.select('#fDeck', 'words');
+  await p.click('#startBtn');
+  const word = await text(p, '#card .ca');
+  assert.equal(await visible(p, '#knowBtn'), true, 'available before showing the answer');
+  await p.click('#knowBtn');
+  assert.notEqual(await text(p, '#card .ca'), word, 'moves on to the next word');
+  assert.equal(await visible(p, '#toast'), true);
+  assert.match(await text(p, '#toastMsg'), new RegExp(`"${word}" → learned`));
+  assert.equal(await text(p, '#sessionCount'), '2 / 15');
+  let s = await waitSaved(p, st => Object.keys(st.progress).length === 2);
+  assert.ok(Object.values(s.progress).every(c => c.state === 'review' && c.ivl === 30), 'Català → ? and ? → Català both learned');
+  await p.click('#endBtn'); await p.click('#backBtn');
+  assert.equal((await statsOf(p)).learned, 2);
+  assert.match(await text(p, '#queueInfo'), /\(0\/15 new done\)/, '"I know it" does not use up a new-card slot');
+  // Undo (session ended): the word comes back as a new card
+  await p.click('#undoBtn');
+  assert.equal(await visible(p, '#session'), true);
+  assert.equal(await text(p, '#card .ca'), word);
+  s = await waitSaved(p, st => Object.keys(st.progress).length === 0);
+  await p.click('#endBtn'); await p.click('#backBtn');
+  // Undo in the middle of a session
+  await p.click('#startBtn');
+  await p.click('#showBtn'); await p.click('.rate.easy');
+  await p.click('#knowBtn');
+  const second = (await text(p, '#toastMsg')).match(/"(.+)"/)[1];
+  await p.click('#undoBtn');
+  assert.equal(await text(p, '#card .ca'), second, 'undone word is shown again at once');
+  await ctx.close();
+});
+
+test('"I know it" on a conjugation card: only that verb × tense is learned', async () => {
+  const ctx = await newContext(browser);
+  const p = await openApp(ctx, server.url);
+  await chooseMode(p, 'conj');
+  await p.click('#startBtn');
+  await p.click('#showBtn');
+  await p.click('#knowBtn');
+  assert.match(await text(p, '#toastMsg'), /· Present → learned/);
+  const s = await waitSaved(p, st => Object.keys(st.progress).length === 1);
+  assert.match(Object.keys(s.progress)[0], /\|c\|present$/);
+  await ctx.close();
+});
 
 test('card faces: show answer, 4 ratings with interval labels, counter, Listen hidden on "? → Català"', async () => {
   const ctx = await newContext(browser);

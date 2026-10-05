@@ -12,6 +12,11 @@ after(async () => { await browser.close(); server.stop(); });
 const swSource = () => readFileSync(ROOT + 'sw.js', 'utf8');
 const shellFiles = () => JSON.parse(swSource().match(/const SHELL = (\[[\s\S]*?\]);/)[1].replace(/'/g, '"'));
 
+test('app VERSION and service worker CACHE match (an update reaches the phone)', () => {
+  const v = readFileSync(ROOT + 'js/app.js', 'utf8').match(/VERSION = '(v\d+)'/)[1];
+  assert.match(swSource(), new RegExp(`const CACHE = 'catala-cards-${v}'`));
+});
+
 test('manifest: required fields and icons', async () => {
   const m = JSON.parse(readFileSync(ROOT + 'manifest.webmanifest', 'utf8'));
   for (const k of ['name', 'short_name', 'start_url', 'scope', 'display', 'icons', 'theme_color', 'background_color']) assert.ok(m[k], k);

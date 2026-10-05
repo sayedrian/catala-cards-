@@ -2,11 +2,12 @@ import { review, preview, isLearned } from './fsrs.js';
 import * as store from './store.js';
 import {
   TENSE_LABELS, PERSONS, IMP_PERSONS, buildItems, cardsFor, buildQueue, stats,
-  itemStatus, weakest, hasMeaning, deckOf, prioritize,
+  itemStatus, weakest, hasMeaning, deckOf, prioritize, markKnown, meaningCards,
 } from './deck.js';
 import { speak, hasCatalanVoice, canRecord, startRecording, stopRecording, isRecording, play } from './audio.js';
 import { suggest } from './translate.js';
 
+export const VERSION = 'v3';
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const norm = s => String(s || '').toLowerCase().replace(/'/g, '’').replace(/\s+/g, ' ').trim();
@@ -24,7 +25,7 @@ function refreshItems() {
 
 function newDay() {
   const t = store.today();
-  if (state.daily.date !== t) state.daily = { date: t, newSeen: 0 };
+  if (state.daily.date !== t) state.daily = { date: t, newSeen: 0, conjSeen: 0 };
 }
 
 // ---------- topics (filters) ----------
@@ -51,21 +52,41 @@ function show(view) {
 document.querySelectorAll('.tabs button').forEach(b => b.onclick = () => show(b.dataset.view));
 
 // ---------- study home ----------
-function filter() { return { deck: $('#fDeck').value, tag: $('#fTag').value }; }
+const mode = () => state.settings.mode === 'conj' ? 'conj' : 'vocab';
+function filter() { return { deck: mode() === 'conj' ? 'conj' : $('#fDeck').value, tag: $('#fTag').value }; }
+
+function renderTenses() {
+  $('#sTenses').innerHTML = '<legend>Tenses</legend>' + Object.entries(TENSE_LABELS).map(([k, l]) =>
+    `<label><input type="checkbox" value="${k}" ${state.settings.tenses.includes(k) ? 'checked' : ''}> ${l}</label>`).join('');
+}
 
 function renderHome() {
   newDay();
-  const s = stats(items, state);
+  const conj = mode() === 'conj';
+  document.querySelector(`#modeSeg input[value=${mode()}]`).checked = true;
+  $('#deckLabel').hidden = conj;
+  $('#sTenses').hidden = !conj;
+  if (conj) renderTenses();
+  // stats for the chosen mode only
+  const s = stats(items, state, Date.now(), { deck: conj ? 'conj' : 'all', tag: '' });
   $('#stats').innerHTML = [
     [s.due, 'due now'], [s.learning, 'learning'], [s.learned, 'learned'], [s.unseen, 'not seen'],
   ].map(([n, l]) => `<div class="stat"><b>${n}</b><span>${l}</span></div>`).join('');
   const q = buildQueue(items, state, filter());
-  $('#queueInfo').textContent = `${q.due.length} to review · ${q.fresh.length} new today` +
-    ` (${state.daily.newSeen}/${state.settings.newPerDay} new done)`;
+  const seen = (conj ? state.daily.conjSeen : state.daily.newSeen) || 0;
+  const limit = conj ? state.settings.conjPerDay : state.settings.newPerDay;
+  $('#queueInfo').textContent = `${q.due.length} to review · ${q.fresh.length} new today (${seen}/${limit} new done)`;
   $('#startBtn').disabled = !q.due.length && !q.fresh.length;
   $('#voiceWarn').hidden = hasCatalanVoice();
 }
-$('#fDeck').onchange = $('#fTag').onchange = renderHome;
+$('#fTag').onchange = renderHome;
+$('#fDeck').onchange = () => { state.settings.vocabDeck = $('#fDeck').value; store.save(state); renderHome(); };
+$('#modeSeg').onchange = e => { state.settings.mode = e.target.value; store.save(state); renderHome(); };
+$('#sTenses').onchange = () => {
+  state.settings.tenses = [...document.querySelectorAll('#sTenses input:checked')].map(i => i.value);
+  store.save(state);
+  renderHome();
+};
 
 // ---------- session ----------
 let session = null;   // { queue: [], pending: [], card, revealed, done, recUrl }
@@ -73,10 +94,14 @@ let session = null;   // { queue: [], pending: [], card, revealed, done, recUrl 
 $('#startBtn').onclick = () => {
   newDay();
   const q = buildQueue(items, state, filter());
-  session = { queue: [...q.due, ...q.fresh], pending: [], done: 0, card: null };
+  startSession([...q.due, ...q.fresh]);
+};
+
+function startSession(cards) {
+  session = { queue: cards, pending: [], done: 0, card: null };
   $('#studyHome').hidden = true; $('#done').hidden = true; $('#session').hidden = false;
   nextCard();
-};
+}
 
 $('#endBtn').onclick = endSession;
 $('#backBtn').onclick = () => { $('#done').hidden = true; $('#studyHome').hidden = false; renderHome(); };
@@ -199,7 +224,10 @@ $('#compareBtn').onclick = async () => {
 function rate(g) {
   const c = session.card;
   const before = state.progress[c.id];
-  if (!before) state.daily.newSeen++;
+  if (!before) {
+    if (c.kind === 'c') state.daily.conjSeen = (state.daily.conjSeen || 0) + 1;
+    else state.daily.newSeen++;
+  }
   const p = review(before, g);
   state.progress[c.id] = p;
   // A priority word stops being priority once both directions have passed the learning steps.
@@ -214,6 +242,50 @@ function rate(g) {
   nextCard();
 }
 document.querySelectorAll('.rate').forEach(b => b.onclick = () => rate(+b.dataset.g));
+
+// "I know it": the word (both directions) or this conjugation table goes straight to learned.
+let undo = null, toastTimer = null;
+$('#knowBtn').onclick = () => {
+  const c = session.card;
+  const it = c.item;
+  const cards = c.kind === 'c' ? [c] : meaningCards(it, state);
+  const ids = new Set(cards.map(x => x.id));
+  const before = markKnown(it, state, cards);
+  if (c.kind !== 'c') delete state.priority[it.id];
+  const removed = session.queue.filter(x => ids.has(x.id)).concat(session.pending.filter(x => ids.has(x.id)));
+  session.queue = session.queue.filter(x => !ids.has(x.id));
+  session.pending = session.pending.filter(x => !ids.has(x.id));
+  undo = { card: c, before, removed, priority: state.priority[it.id] };
+  store.save(state); store.flush();
+  showToast(`✓ "${it.ca}"${c.kind === 'c' ? ' · ' + TENSE_LABELS[c.tense] : ''} → learned`);
+  session.done++;
+  nextCard();
+};
+
+function showToast(msg) {
+  $('#toastMsg').textContent = msg;
+  $('#toast').hidden = false;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => { $('#toast').hidden = true; undo = null; }, 8000);
+}
+
+$('#undoBtn').onclick = () => {
+  if (!undo) return;
+  for (const [id, p] of Object.entries(undo.before)) {
+    if (p) state.progress[id] = p; else delete state.progress[id];
+  }
+  store.save(state); store.flush();
+  const back = [undo.card, ...undo.removed.filter(x => x.id !== undo.card.id)];
+  undo = null;
+  $('#toast').hidden = true;
+  if (session) {
+    session.done = Math.max(0, session.done - 1);
+    session.queue.unshift(...back);
+    nextCard();
+  } else {
+    startSession(back);
+  }
+};
 
 document.addEventListener('keydown', e => {
   if (!session || $('#session').hidden || e.target.matches('input, select')) return;
@@ -338,10 +410,7 @@ function openDetail(id) {
     if (a === 'speak') speak(it.ex ? `${it.ca}. ${it.ex}` : it.ca, state.settings.rate);
     if (a === 'priority') { prioritize(it, state); done('Moved to the top of your study queue.'); }
     if (a === 'known') {
-      const now = Date.now();
-      for (const c of cardsFor(it, state.settings.tenses)) {
-        state.progress[c.id] = { state: 'review', s: 30, d: 5, ivl: 30, last: now, due: now + 30 * 864e5, reps: 1, lapses: 0 };
-      }
+      markKnown(it, state, cardsFor(it, state.settings.tenses));
       delete state.priority[id];
       done('Marked as learned. It comes back in a month to check.');
     }
@@ -417,22 +486,19 @@ $('#printBtn').onclick = () => {
 // ---------- more: settings, backup ----------
 function renderMore() {
   $('#sNew').value = state.settings.newPerDay;
+  $('#sConjNew').value = state.settings.conjPerDay;
   $('#sRate').value = state.settings.rate;
-  $('#sTenses').innerHTML = '<legend>Conjugation drill: tenses</legend>' + Object.entries(TENSE_LABELS).map(([k, l]) =>
-    `<label><input type="checkbox" value="${k}" ${state.settings.tenses.includes(k) ? 'checked' : ''}> ${l}</label>`).join('');
   const s = stats(items, state);
   const verbs = items.filter(it => it.conj).length;
   $('#about').innerHTML = `${items.length} items (${items.filter(i => i.type === 'word').length} words, ` +
     `${items.filter(i => i.type === 'verb').length} verbs, ${items.filter(i => i.type === 'expr').length} expressions), ` +
     `${verbs} verbs with conjugations. ${s.total} cards, ${s.learned} learned.<br>` +
-    `A card counts as <b>learned</b> when its next review is 21+ days away. Catalan voice: ${hasCatalanVoice() ? 'yes ✓' : 'not installed'}.`;
+    `A card counts as <b>learned</b> when its next review is 21+ days away. Catalan voice: ${hasCatalanVoice() ? 'yes ✓' : 'not installed'}.` +
+    `<br>App version ${VERSION}.`;
 }
 $('#sNew').onchange = e => { state.settings.newPerDay = Math.max(0, +e.target.value || 0); store.save(state); };
 $('#sRate').onchange = e => { state.settings.rate = +e.target.value; store.save(state); };
-$('#sTenses').onchange = () => {
-  state.settings.tenses = [...document.querySelectorAll('#sTenses input:checked')].map(i => i.value);
-  store.save(state);
-};
+$('#sConjNew').onchange = e => { state.settings.conjPerDay = Math.max(0, +e.target.value || 0); store.save(state); };
 $('#testVoice').onclick = () => speak('Bon dia, com estàs?', state.settings.rate);
 
 $('#exportBtn').onclick = () => {
@@ -485,6 +551,7 @@ async function init() {
     $('#queueInfo').textContent = 'Could not load the card deck.';
   }
   refreshItems();
+  $('#fDeck').value = state.settings.vocabDeck || 'all';
   const opts = topicOptions();
   $('#fTag').innerHTML = opts;
   $('#pTag').innerHTML = opts;

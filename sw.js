@@ -1,11 +1,15 @@
-// Offline support: serve from cache, refresh the cache in the background.
-const CACHE = 'catala-cards-v2';
+// Offline support. Online: always fetch the current files (so an update never mixes old and new
+// files); the cache is the fallback when offline. Keep CACHE in step with VERSION in js/app.js.
+const CACHE = 'catala-cards-v3';
 const SHELL = ['./', 'index.html', 'style.css', 'manifest.webmanifest', 'data/cards.json',
   'js/app.js', 'js/fsrs.js', 'js/store.js', 'js/deck.js', 'js/audio.js', 'js/translate.js',
   'icons/icon-192.png', 'icons/icon-512.png'];
 
 self.addEventListener('install', e => {
-  e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));
+  // cache: 'reload' skips the browser's HTTP cache, so the new version is cached complete and fresh
+  e.waitUntil(caches.open(CACHE)
+    .then(c => c.addAll(SHELL.map(u => new Request(u, { cache: 'reload' }))))
+    .then(() => self.skipWaiting()));
 });
 
 self.addEventListener('activate', e => {
@@ -17,9 +21,17 @@ self.addEventListener('activate', e => {
 self.addEventListener('fetch', e => {
   const url = new URL(e.request.url);
   if (e.request.method !== 'GET' || url.origin !== location.origin) return;
-  e.respondWith(caches.open(CACHE).then(async cache => {
-    const hit = await cache.match(e.request, { ignoreSearch: true });
-    const net = fetch(e.request).then(r => { if (r.ok) cache.put(e.request, r.clone()); return r; }).catch(() => hit);
-    return hit || net;
-  }));
+  e.respondWith((async () => {
+    const cache = await caches.open(CACHE);
+    try {
+      // 'no-cache' = check with the server (cheap 304 if unchanged)
+      const r = await fetch(e.request, { cache: 'no-cache' });
+      if (r.ok) cache.put(e.request, r.clone());
+      return r;
+    } catch (err) {
+      const hit = await cache.match(e.request, { ignoreSearch: true });
+      if (hit) return hit;
+      throw err;
+    }
+  })());
 });

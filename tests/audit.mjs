@@ -30,7 +30,8 @@ const SCREENS = {
     await click(q, '#startBtn');
     return q;
   },
-  'conjugation': async p => { await p.select('#fDeck', 'conj'); await click(p, '#startBtn'); await click(p, '#showBtn'); },
+  'conjugation': async p => { await click(p, '#modeSeg input[value=conj]'); await click(p, '#startBtn'); await click(p, '#showBtn'); },
+  'study-conj-home': async p => { await click(p, '#modeSeg input[value=conj]'); },
   'add': async p => { await tab(p, 'add'); },
   'words': async p => { await tab(p, 'words'); },
   'detail': async p => { await tab(p, 'words'); await p.type('#search', 'tovallola'); await click(p, '#wordList li'); },

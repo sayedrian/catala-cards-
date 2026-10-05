@@ -132,3 +132,8 @@ export async function studyCards(page, n, rating = 3) {
   }
   return n;
 }
+
+// Study screen: choose Vocabulary or Conjugation.
+export async function chooseMode(page, mode) {
+  await page.click(`#modeSeg input[value=${mode}]`);
+}
