@@ -1,6 +1,6 @@
 import { test, afterEach } from 'node:test';
 import assert from 'node:assert/strict';
-import { suggest } from '../../js/translate.js';
+import { suggest, suggestInContext, pickBySentence } from '../../js/translate.js';
 
 const realFetch = globalThis.fetch;
 afterEach(() => { globalThis.fetch = realFetch; });
@@ -53,4 +53,58 @@ test('quota warning counts as a failure', async () => {
 test('all failing (offline) throws', async () => {
   mock(() => new TypeError('Failed to fetch'));
   await assert.rejects(suggest('fosc'), /Failed to fetch/);
+});
+
+// ---- v5: sentence context ----
+const withAlt = (t, segment, alts) => ({ responseData: { translatedText: t }, matches: alts.map(translation => ({ segment, translation })) });
+
+test('pickBySentence: the option found in the sentence, longest first, articles ignored', () => {
+  assert.equal(pickBySentence(['dark', 'dark-haired', 'gloomy'], 'She has dark-haired kids.'), 'dark-haired');
+  assert.equal(pickBySentence(['the queue', 'the tail'], 'The dog wags its tail.'), 'the tail');
+  assert.equal(pickBySentence(['oscuro', 'moreno'], 'Tiene el pelo moreno.'), 'moreno');
+  assert.equal(pickBySentence(['المنشفة'], 'أين منشفتي؟ المنشفة هنا'), 'المنشفة');
+  assert.equal(pickBySentence(['tail'], 'Retail prices'), null, 'whole words only (not inside another word)');
+  assert.equal(pickBySentence(['dark'], ''), null);
+});
+
+test('suggestInContext: no sentence = 3 requests, options deduped and same-segment only', async () => {
+  const calls = mock((l, q) => ({ responseData: { translatedText: 'dark' },
+    matches: [{ segment: 'fosc', translation: 'Dark' }, { segment: 'fosca', translation: 'darkness' }, { segment: 'Fosc.', translation: 'gloomy' }] }));
+  const t = await suggestInContext('fosc');
+  assert.deepEqual(t.options.en, ['dark', 'gloomy'], '"fosca" is another word, "Dark" a duplicate');
+  assert.equal(t.en, 'dark');
+  assert.equal(t.sentence, null);
+  assert.equal(t.fits.en, null);
+  assert.equal(calls.length, 3);
+});
+
+test('suggestInContext: with a sentence, picks the meaning that is in the sentence', async () => {
+  const calls = mock((l, q) => (q === 'la cua'
+    ? withAlt({ es: '¿Hmm?', en: 'Hmm?', ar: 'همم؟' }[l], q, { es: ['la cola'], en: ['the queue', 'the tail'], ar: ['الذيل'] }[l])
+    : ok({ es: 'El perro mueve la cola.', en: 'The dog wags its tail.', ar: 'الكلب يهز ذيله.' }[l])));
+  const t = await suggestInContext('la cua', ' El gos mou la cua. ');
+  assert.equal(calls.length, 6);
+  assert.equal(calls.filter(c => c.q === 'El gos mou la cua.').length, 3, 'sentence trimmed and sent once per language');
+  assert.deepEqual(t.sentence, { es: 'El perro mueve la cola.', en: 'The dog wags its tail.', ar: 'الكلب يهز ذيله.' });
+  assert.equal(t.es, 'la cola');
+  assert.equal(t.en, 'the tail');
+  assert.equal(t.fits.en, true);
+  assert.deepEqual(t.options.en, ['hmm', 'the queue', 'the tail'], 'end punctuation dropped');
+  assert.equal(t.ar, 'الذيل', 'Arabic: found without its article inside ذيله ("its tail")');
+  assert.equal(t.fits.ar, true);
+});
+
+test('suggestInContext: no option in the sentence keeps the main one, fits = false', async () => {
+  mock((l, q) => (q === 'fosc' ? withAlt('dark', q, ['gloomy']) : ok('It is night.')));
+  const t = await suggestInContext('fosc', 'És de nit.');
+  assert.equal(t.en, 'dark');
+  assert.equal(t.fits.en, false);
+});
+
+test('suggestInContext: sentence failing still gives the word', async () => {
+  mock((l, q) => (q === 'fosc' ? ok('dark') : 500));
+  const t = await suggestInContext('fosc', 'Fa fosc.');
+  assert.equal(t.en, 'dark');
+  assert.equal(t.sentence.en, '');
+  assert.equal(t.fits.en, null);
 });

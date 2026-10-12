@@ -2,12 +2,12 @@ import { review, preview, isLearned } from './fsrs.js';
 import * as store from './store.js';
 import {
   TENSE_LABELS, PERSONS, IMP_PERSONS, buildItems, cardsFor, buildQueue, stats,
-  itemStatus, weakest, hasMeaning, deckOf, prioritize, markKnown, meaningCards,
+  itemStatus, weakest, hasMeaning, deckOf, prioritize, markKnown, meaningCards, markWord,
 } from './deck.js';
 import { speak, hasCatalanVoice, canRecord, startRecording, stopRecording, isRecording, play } from './audio.js';
-import { suggest } from './translate.js';
+import { suggestInContext, LANGS } from './translate.js';
 
-export const VERSION = 'v4';
+export const VERSION = 'v5';
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const norm = s => String(s || '').toLowerCase().replace(/'/g, '’').replace(/\s+/g, ' ').trim();
@@ -138,6 +138,18 @@ function transBlock(it) {
   return `<div class="trans">${rows.join('')}</div>`;
 }
 
+// The sentence with the word in bold, then its translations (only those I have).
+const plainEx = s => String(s || '').replace(/\*/g, '');
+function exHtml(it) {
+  return markWord(it.ex, it.ca).map(p => (p.hit ? `<b>${esc(p.t)}</b>` : esc(p.t))).join('');
+}
+function exBlock(it) {
+  if (!it.ex) return '';
+  const tr = [it.exEs && `<div><span class="l">ES</span>${esc(it.exEs)}</div>`, it.exEn && `<div><span class="l">EN</span>${esc(it.exEn)}</div>`,
+    it.exAr && `<div class="ar" lang="ar" dir="rtl">${esc(it.exAr)}<span class="l">AR</span></div>`].filter(Boolean).join('');
+  return `<div class="ex" lang="ca">${exHtml(it)}</div>${tr ? `<div class="extrans">${tr}</div>` : ''}`;
+}
+
 function caBlock(it) {
   const meta = [it.gender && it.gender !== it.ca.split(' ')[0] ? it.gender : '', it.pron ? `/${it.pron}/` : '',
     it.type === 'verb' && it.part ? `part. ${it.part}` : ''].filter(Boolean).join(' · ');
@@ -172,7 +184,7 @@ function renderCard() {
     back = conjTable(it, c.tense);
   }
   const extra = revealed && c.kind !== 'c'
-    ? (it.ex ? `<div class="ex" lang="ca">${esc(it.ex)}</div>` : '') + (it.notes ? `<div class="meta">${esc(it.notes)}</div>` : '')
+    ? exBlock(it) + (it.notes ? `<div class="meta">${esc(it.notes)}</div>` : '')
     : '';
   $('#card').innerHTML = `<div class="kind">${KIND_LABEL[c.kind]} · ${deckOf(it)}</div>${front}` +
     (revealed ? `<hr>${back}${extra}` : '') + `<div>${flags(it)}</div>`;
@@ -230,7 +242,7 @@ function speakText() {
   const { card: c } = session;
   const it = c.item;
   if (c.kind === 'c') return it.conj[c.tense].join(', ');
-  return session.revealed && it.ex ? `${it.ca}. ${it.ex}` : it.ca;
+  return session.revealed && it.ex ? `${it.ca}. ${plainEx(it.ex)}` : it.ca;
 }
 
 $('#speakBtn').onclick = () => speak(speakText(), state.settings.rate);
@@ -329,15 +341,57 @@ document.addEventListener('keydown', e => {
 });
 
 // ---------- add ----------
+// Suggestions only fill a box that is empty or still holds the last suggestion (never what I typed).
+function fill(input, value) {
+  if (!input.value.trim() || input.value === input.dataset.auto) { input.value = value || ''; input.dataset.auto = value || ''; }
+}
+
+// Meaning choices under each language box; the one that appears in the sentence is marked.
+function renderOptions(t) {
+  const f = $('#addForm');
+  for (const l of LANGS) {
+    const opts = (t && t.options[l]) || [];
+    const box = $('#opt-' + l);
+    if (opts.length < 2 && !(t && t.fits[l] === false)) { box.innerHTML = ''; continue; }
+    const fit = t.fits[l] ? t[l] : null;
+    box.innerHTML = opts.map(o => `<button type="button" class="chip opt${o === f[l].value ? ' on' : ''}" data-l="${l}" ` +
+      `data-v="${esc(o)}">${esc(o)}${o === fit ? ' <small>✓ in the sentence</small>' : ''}</button>`).join('') +
+      (t.fits[l] === false ? '<span class="muted">None of these is in the sentence translation: check it or type your own.</span>' : '');
+  }
+}
+document.querySelectorAll('.opts').forEach(box => box.onclick = e => {
+  const b = e.target.closest('.opt');
+  if (!b) return;
+  const input = $('#addForm')[b.dataset.l];
+  input.value = input.dataset.auto = b.dataset.v;
+  box.querySelectorAll('.opt').forEach(x => x.classList.toggle('on', x === b));
+});
+LANGS.forEach(l => { $('#addForm')[l].oninput = () => $('#opt-' + l).querySelectorAll('.opt').forEach(x => x.classList.remove('on')); });
+
+function resetAdd() {
+  const f = $('#addForm');
+  f.reset();
+  f.querySelectorAll('input').forEach(i => { delete i.dataset.auto; });
+  $('#exTr').hidden = true;
+  $('#trState').textContent = '';
+  renderOptions(null);
+}
+
 $('#translateBtn').onclick = async () => {
   const f = $('#addForm');
   const ca = f.ca.value.trim();
   if (!ca) return f.ca.focus();
-  $('#trState').textContent = 'translating…';
+  const ex = plainEx(f.ex.value).trim();
+  $('#trState').textContent = ex ? 'translating the word and the sentence…' : 'translating…';
   try {
-    const t = await suggest(ca);
-    for (const k of ['es', 'en', 'ar']) if (!f[k].value.trim()) f[k].value = t[k];
-    $('#trState').textContent = 'suggestion: check it';
+    const t = await suggestInContext(ca, ex);
+    for (const l of LANGS) fill(f[l], t[l]);
+    if (t.sentence) {
+      fill(f.exEs, t.sentence.es); fill(f.exEn, t.sentence.en); fill(f.exAr, t.sentence.ar);
+      $('#exTr').hidden = false;
+    }
+    renderOptions(t);
+    $('#trState').textContent = ex ? 'suggestion: check it against the sentence' : 'suggestion: check it (add the sentence for a better guess)';
   } catch (e) {
     $('#trState').textContent = navigator.onLine ? 'translation service failed, try again or type them' : 'offline: save now, translated later';
   }
@@ -353,13 +407,14 @@ $('#addForm').onsubmit = e => {
     prioritize(existing, state);
     store.save(state);
     $('#addMsg').textContent = `"${existing.ca}" is already in your cards: moved to the top of your study queue.`;
-    f.reset();
+    resetAdd();
     return;
   }
   const it = {
     id: 'u' + Date.now().toString(36), type, ca,
     es: f.es.value.trim(), en: f.en.value.trim(), ar: f.ar.value.trim(),
-    ex: f.ex.value.trim(), notes: f.notes.value.trim(),
+    ex: f.ex.value.trim(), exEs: f.exEs.value.trim(), exEn: f.exEn.value.trim(), exAr: f.exAr.value.trim(),
+    notes: f.notes.value.trim(),
     tags: ['src:app'], added: Date.now(), updated: Date.now(), unchecked: true,
   };
   if (!hasMeaning(it)) it.needsTranslation = true;
@@ -370,8 +425,7 @@ $('#addForm').onsubmit = e => {
   refreshItems();
   $('#addMsg').textContent = `Saved "${ca}". It comes first in your next study session.` +
     (it.needsTranslation ? ' Translations will be added when you are online.' : '');
-  f.reset();
-  $('#trState').textContent = '';
+  resetAdd();
   if (it.needsTranslation && navigator.onLine) fillMissing();
 };
 
@@ -380,8 +434,9 @@ async function fillMissing() {
   const todo = Object.values(state.added).filter(it => it.needsTranslation);
   for (const it of todo) {
     try {
-      const t = await suggest(it.ca);
-      for (const k of ['es', 'en', 'ar']) if (!it[k] && t[k]) it[k] = t[k];
+      const t = await suggestInContext(it.ca, plainEx(it.ex));
+      for (const k of LANGS) if (!it[k] && t[k]) it[k] = t[k];
+      if (t.sentence) for (const [k, l] of [['exEs', 'es'], ['exEn', 'en'], ['exAr', 'ar']]) if (!it[k] && t.sentence[l]) it[k] = t.sentence[l];
       if (hasMeaning(it)) { delete it.needsTranslation; it.updated = Date.now(); }
     } catch (e) { return; }
   }
@@ -425,7 +480,7 @@ function openDetail(id) {
     <div class="ca" lang="ca" style="font-size:1.6rem;font-weight:700">${esc(it.ca)}</div>
     <div class="muted">${esc([deckOf(it), it.unit, it.cat, it.pron && '/' + it.pron + '/'].filter(Boolean).join(' · '))}</div>
     ${transBlock(it)}
-    ${it.ex ? `<div class="ex" lang="ca">${esc(it.ex)}</div>` : ''}
+    ${exBlock(it)}
     ${it.notes ? `<div class="muted">${esc(it.notes)}</div>` : ''}
     <div>${it.needsTranslation ? '<span class="flag">needs translation</span> ' : it.unchecked ? '<span class="flag">not checked yet</span> ' : ''}${it.conjAuto ? '<span class="flag">conjugation made by rule</span>' : ''}</div>
     ${conj}
@@ -442,7 +497,7 @@ function openDetail(id) {
   d.onclick = e => {
     const a = e.target.dataset && e.target.dataset.a;
     if (e.target === d || a === 'close') return d.close();
-    if (a === 'speak') speak(it.ex ? `${it.ca}. ${it.ex}` : it.ca, state.settings.rate);
+    if (a === 'speak') speak(it.ex ? `${it.ca}. ${plainEx(it.ex)}` : it.ca, state.settings.rate);
     if (a === 'priority') { prioritize(it, state); done('Moved to the top of your study queue.'); }
     if (a === 'known') {
       markKnown(it, state, cardsFor(it, state.settings.tenses));
@@ -465,10 +520,11 @@ function openDetail(id) {
 
 function openEdit(it) {
   const d = $('#detail');
-  const fields = [['ca', 'Català'], ['es', 'Español'], ['en', 'English'], ['ar', 'العربية'], ['ex', 'Example'], ['notes', 'Notes']];
+  const fields = [['ca', 'Català'], ['es', 'Español'], ['en', 'English'], ['ar', 'العربية'], ['ex', 'Sentence'],
+    ['exEs', 'Sentence ES'], ['exEn', 'Sentence EN'], ['exAr', 'Sentence AR'], ['notes', 'Notes']];
   d.innerHTML = `<form class="dlg" method="dialog">
     <h2>Edit</h2>
-    ${fields.map(([k, l]) => `<label>${l}<input name="${k}" value="${esc(it[k] || '')}" ${k === 'ar' ? 'dir="rtl"' : ''}></label>`).join('')}
+    ${fields.map(([k, l]) => `<label>${l}<input name="${k}" value="${esc(it[k] || '')}" ${k === 'ar' || k === 'exAr' ? 'dir="rtl"' : ''}></label>`).join('')}
     <label style="flex-direction:row;gap:8px;align-items:center"><input type="checkbox" name="checked" ${it.unchecked ? '' : 'checked'}> Translations checked</label>
     <div class="row"><button class="primary" value="save">Save</button><button value="cancel">Cancel</button></div>
   </form>`;
@@ -507,7 +563,7 @@ $('#printBtn').onclick = () => {
       for (const col of [1, 0]) {
         const it = chunk[r * 2 + col];
         back.push(it ? `<div class="pc"><div class="tr">${esc(it.es || '')}</div><div class="tr">${esc(it.en || '')}</div>` +
-          `<div class="ar" lang="ar">${esc(it.ar || '')}</div>${it.ex ? `<div class="ex">${esc(it.ex)}</div>` : ''}</div>` : '<div class="pc"></div>');
+          `<div class="ar" lang="ar">${esc(it.ar || '')}</div>${it.ex ? `<div class="ex">${exHtml(it)}</div>` : ''}</div>` : '<div class="pc"></div>');
       }
     }
     while (front.length < 10) front.push('<div class="pc"></div>');

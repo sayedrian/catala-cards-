@@ -9,6 +9,11 @@ before(async () => { server = await startServer(); browser = await launch(); });
 after(async () => { await browser.close(); server.stop(); });
 
 const val = (p, name) => p.$eval(`#addForm [name=${name}]`, e => e.value);
+// The form is taller than a phone screen: scroll to the middle first, so the bottom tab bar never covers it.
+async function tap(p, sel) {
+  await p.$eval(sel, e => e.scrollIntoView({ block: 'center' }));
+  await p.click(sel);
+}
 async function typeCa(p, word) {
   await p.$eval('#addForm [name=ca]', e => { e.value = ''; });
   await p.type('#addForm [name=ca]', word);
@@ -53,7 +58,7 @@ test('save a new word: flagged "not checked", priority, first in the next sessio
   await p.click('#translateBtn');
   await p.waitForFunction(() => document.querySelector('#trState').textContent.includes('suggestion'));
   await p.type('#addForm [name=ex]', 'Ens vam fer un tip de riure.');
-  await p.click('#addForm button.primary');
+  await tap(p, '#addForm button.primary');
   assert.match(await text(p, '#addMsg'), /Saved "fer-se un tip de riure"/);
   assert.equal(await val(p, 'ca'), '', 'form cleared');
   const s = await waitSaved(p, st => Object.keys(st.added).length === 1);
@@ -91,7 +96,7 @@ test('priority words come even when the daily new limit is used up', async () =>
   await typeCa(p, 'el xiulet');
   await p.click('#translateBtn');
   await p.waitForFunction(() => document.querySelector('#trState').textContent.includes('suggestion'));
-  await p.click('#addForm button.primary');
+  await tap(p, '#addForm button.primary');
   await tab(p, 'study');
   assert.match(await text(p, '#queueInfo'), /1 new today/);
   await ctx.close();
@@ -102,7 +107,7 @@ test('duplicate: adding a word that exists marks it priority instead', async () 
   const p = await openApp(ctx, server.url);
   await tab(p, 'add');
   await typeCa(p, "La Tovallola");    // case and article-insensitive
-  await p.click('#addForm button.primary');
+  await tap(p, '#addForm button.primary');
   assert.match(await text(p, '#addMsg'), /"la tovallola" is already in your cards/);
   const s = await waitSaved(p, st => Object.keys(st.priority).length === 1);
   assert.equal(Object.keys(s.added).length, 0);
@@ -118,7 +123,7 @@ test('a verb with the same spelling as a word is not a duplicate', async () => {
   await tab(p, 'add');
   await p.click('#addForm input[value=verb]');
   await typeCa(p, 'la tovallola');
-  await p.click('#addForm button.primary');
+  await tap(p, '#addForm button.primary');
   assert.match(await text(p, '#addMsg'), /^Saved/);
   await ctx.close();
 });
@@ -132,7 +137,7 @@ test('offline: saved with "needs translation", translated when back online', asy
   await p.evaluate(() => window.dispatchEvent(new Event('offline')));
   assert.equal(await visible(p, '#netState'), true, 'offline badge');
   await typeCa(p, 'el paraigua');
-  await p.click('#addForm button.primary');
+  await tap(p, '#addForm button.primary');
   assert.match(await text(p, '#addMsg'), /translated when you are online|Translations will be added/);
   let s = await waitSaved(p, st => Object.keys(st.added).length === 1);
   assert.equal(Object.values(s.added)[0].needsTranslation, true);
@@ -237,7 +242,7 @@ test('detail: edit and remove a word I added', async () => {
   await typeCa(p, 'el paraigua');
   await p.click('#translateBtn');
   await p.waitForFunction(() => document.querySelector('#trState').textContent.includes('suggestion'));
-  await p.click('#addForm button.primary');
+  await tap(p, '#addForm button.primary');
   await tab(p, 'words');
   await p.select('#statusFilter', 'unchecked');
   assert.match(await text(p, '#wordList'), /el paraigua/);
@@ -268,5 +273,72 @@ test('conjugation tables in the detail view; rule-made verbs are flagged', async
   assert.equal(await p.$$eval('#detail details', x => x.length), 8);
   await p.click('#detail details:last-of-type summary');
   assert.match(await text(p, '#detail details:last-of-type'), /aixeca’t/);
+  await ctx.close();
+});
+
+test('v5: word + sentence → sentence translated, meaning picked from it, choices, bold word on the card', async () => {
+  const ctx = await newContext(browser);
+  const p = await openApp(ctx, server.url);
+  await tab(p, 'add');
+  assert.equal(await visible(p, '#exTr'), false, 'sentence translation hidden at first');
+  await typeCa(p, 'la cua');
+  await p.type('#addForm [name=ex]', 'El gos mou la cua.');
+  await p.click('#translateBtn');
+  await p.waitForFunction(() => document.querySelector('#trState').textContent.includes('suggestion'));
+  assert.equal(p.translateCalls.length, 6, 'word + sentence, 3 languages each');
+  assert.equal(await visible(p, '#exTr'), true);
+  assert.equal(await val(p, 'exEs'), 'El perro mueve la cola.');
+  assert.equal(await val(p, 'es'), 'la cola', 'the meaning in the sentence, not the first guess "¿hmm?"');
+  assert.equal(await val(p, 'en'), 'the tail');
+  assert.equal(await val(p, 'ar'), 'الذيل');
+  assert.deepEqual(await p.$$eval('#opt-en .opt', b => b.map(x => x.dataset.v)), ['hmm', 'the queue', 'the tail']);
+  assert.match(await text(p, '#opt-en .opt.on'), /the tail ✓ in the sentence/);
+  // tap another meaning
+  await tap(p, '#opt-en .opt[data-v="the queue"]');
+  assert.equal(await val(p, 'en'), 'the queue');
+  assert.match(await text(p, '#opt-en .opt.on'), /the queue/);
+  // pressing Translate again re-suggests, but never overwrites what I typed
+  await p.$eval('#addForm [name=es]', e => { e.value = ''; });
+  await p.type('#addForm [name=es]', 'la cola (del perro)');
+  await p.click('#translateBtn');
+  await p.waitForFunction(() => document.querySelector('#trState').textContent.includes('suggestion'));
+  assert.equal(await val(p, 'es'), 'la cola (del perro)');
+  await tap(p, '#addForm button.primary');
+  const s = await waitSaved(p, st => Object.keys(st.added).length === 1);
+  const it = Object.values(s.added)[0];
+  assert.equal(it.ex, 'El gos mou la cua.');
+  assert.equal(it.exEn, 'The dog wags its tail.');
+  assert.equal(it.exAr, 'الكلب يهز ذيله.');
+  assert.equal(it.es, 'la cola (del perro)');
+  assert.equal(await visible(p, '#exTr'), false, 'form reset');
+  assert.equal(await p.$$eval('#opt-en .opt', b => b.length), 0);
+  // study: the sentence shows after the answer, the word in bold, with its translation
+  await tab(p, 'study');
+  await p.click('#startBtn');
+  assert.doesNotMatch(await text(p, '#card'), /gos/, 'sentence hidden before the answer');
+  await p.click('#showBtn');
+  assert.equal(await text(p, '#card .ex b'), 'cua');
+  assert.match(await text(p, '#card .extrans'), /The dog wags its tail/);
+  assert.deepEqual(p.errors, []);
+  await ctx.close();
+});
+
+test('v5: offline word with a sentence gets word and sentence translated when back online', async () => {
+  const ctx = await newContext(browser);
+  const p = await openApp(ctx, server.url);
+  await tab(p, 'add');
+  await p.setOfflineMode(true);
+  p.translateMode = 'fail';
+  await typeCa(p, 'la cua');
+  await p.type('#addForm [name=ex]', 'El gos mou la cua.');
+  await tap(p, '#addForm button.primary');
+  await waitSaved(p, st => Object.keys(st.added).length === 1);
+  await p.setOfflineMode(false);
+  p.translateMode = 'ok';
+  await p.evaluate(() => window.dispatchEvent(new Event('online')));
+  const s = await waitSaved(p, st => !Object.values(st.added)[0].needsTranslation, 5000);
+  const it = Object.values(s.added)[0];
+  assert.equal(it.en, 'the tail');
+  assert.equal(it.exEs, 'El perro mueve la cola.');
   await ctx.close();
 });

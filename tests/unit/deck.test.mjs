@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import {
   buildItems, cardsFor, matchesFilter, buildQueue, stats, itemStatus, weakest, deckOf, prioritize,
-  markKnown, meaningCards,
+  markKnown, meaningCards, markWord,
 } from '../../js/deck.js';
 import { review } from '../../js/fsrs.js';
 import { emptyState } from '../../js/store.js';
@@ -217,4 +217,17 @@ test('real deck: queue and stats run fast on ~2,900 cards and on a 3× deck', ()
   const ms3 = performance.now() - t;
   console.log(`  perf: real deck ${ms1.toFixed(1)} ms, 3× deck ${ms3.toFixed(1)} ms`);
   assert.ok(ms3 < 500, `3× deck took ${ms3} ms`);
+});
+
+test('markWord: finds the word in its sentence (forms, phrases, articles, *stars*)', () => {
+  const b = (s, w) => markWord(s, w).map(p => (p.hit ? `[${p.t}]` : p.t)).join('');
+  assert.equal(b('Té els cabells foscos i curts.', 'fosc'), 'Té els cabells [foscos] i curts.');
+  assert.equal(b("M'agrada fer excursions.", 'fer excursions'), "M'agrada [fer excursions].");
+  assert.equal(b("Bevem l'aigua freda.", "l'aigua"), "Bevem l'[aigua] freda.");
+  assert.equal(b('Parlem català.', 'parlar'), '[Parlem] català.');
+  assert.equal(b('Ens vam fer un tip de riure.', 'fer-se un tip de riure'), 'Ens vam [fer] un [tip] de [riure].');
+  assert.equal(b('La TOVALLOLA és blava.', 'la tovallola'), 'La [TOVALLOLA] és blava.');
+  assert.equal(b('Ahir *vaig anar* al cine.', 'anar'), 'Ahir [vaig anar] al cine.', 'stars win');
+  assert.equal(b('No hi ha res.', 'fosc'), 'No hi ha res.');
+  assert.deepEqual(markWord('', 'fosc'), [{ t: '', hit: false }]);
 });

@@ -108,6 +108,20 @@ button.know { border-color: var(--good); color: var(--good-text); font-weight: 6
 .trans .l { font-size: .7rem; color: var(--muted); margin-right: 6px; vertical-align: middle; }
 .ar { font-size: 1.35rem; font-family: "Noto Naskh Arabic", "Geeza Pro", serif; }
 .ex { font-style: italic; color: var(--muted); }
+.ex b { font-style: normal; color: var(--ink); font-weight: 700; }
+.extrans { display: flex; flex-direction: column; gap: 2px; font-size: .9rem; color: var(--muted); }
+.extrans .l { font-size: .7rem; margin: 0 6px; }
+.extrans .ar { font-size: 1.1rem; }
+.hint { margin: -6px 0 0; font-size: .8rem; }
+.exTr { flex-direction: column; flex-wrap: nowrap; }
+.exTr legend { font-size: .9rem; color: var(--muted); }
+.exTr label { gap: 8px; }
+.exTr label input { flex: 1; }
+.opts { display: flex; flex-wrap: wrap; gap: 6px; margin-top: -4px; align-items: center; }
+.opts:empty { display: none; }
+.opts .opt { padding: 4px 10px; }
+.opts .opt.on { border-color: var(--accent); background: var(--accent); color: var(--accent-ink); }
+.opts .opt small { font-size: .7rem; }
 .flag { display: inline-block; font-size: .7rem; background: var(--warn-bg); padding: 1px 8px; border-radius: 99px; color: var(--ink); }
 table.conj { margin: 0 auto; border-collapse: collapse; text-align: left; font-size: 1.05rem; }
 table.conj td { padding: 3px 8px; }

@@ -11,6 +11,8 @@ Installable web app (PWA) for Android; works offline. Design and plan: in my pri
 - **Decks:** everything, words, verbs, expressions, verb conjugations (choose the tenses in More). **Topics:** CPNL course unit, exam theme, sheet unit.
 - **Add** a word: "Translate" suggests Spanish / English / Arabic (MyMemory, free). New words come first in the next session.
   Saved offline → translated when back online. New words stay "not checked" until reviewed.
+  Add the **sentence where you found it**: it is translated too, the meaning found in it is picked
+  ("✓ in the sentence"), other meanings show as buttons, and the card shows the sentence with the word in **bold**.
 - **Listen** (the phone's Catalan voice) and **record** myself, then "Model + me" to compare.
 - **Print** A4: 10 cards per sheet, front = Català, back = translations (print double-sided, flip on long edge).
 - **Backup:** More → Save backup file. Loading a backup merges it (newest wins, nothing is deleted).

@@ -90,12 +90,22 @@
         <label><input type="radio" name="type" value="verb"> Verb</label>
       </div>
       <label>Català <input name="ca" required lang="ca" autocapitalize="none" placeholder="e.g. fosc"></label>
+      <label>Sentence where I found it (optional) <input name="ex" lang="ca" placeholder="e.g. Té els cabells foscos."></label>
+      <p class="muted hint">The sentence helps pick the right meaning. Put *stars* around the word if the app doesn't show it in bold.</p>
       <button type="button" id="translateBtn" class="chip">🌐 Translate</button>
-      <span id="trState" class="muted"></span>
+      <span id="trState" class="muted" aria-live="polite"></span>
+      <fieldset id="exTr" class="exTr" hidden>
+        <legend>The sentence means</legend>
+        <label>ES <input name="exEs" lang="es"></label>
+        <label>EN <input name="exEn" lang="en"></label>
+        <label>AR <input name="exAr" lang="ar" dir="rtl"></label>
+      </fieldset>
       <label>Español <input name="es" lang="es"></label>
+      <div class="opts" id="opt-es"></div>
       <label>English <input name="en" lang="en"></label>
+      <div class="opts" id="opt-en"></div>
       <label>العربية <input name="ar" lang="ar" dir="rtl"></label>
-      <label>Example (optional) <input name="ex" lang="ca"></label>
+      <div class="opts" id="opt-ar" dir="rtl"></div>
       <label>Notes (optional) <input name="notes"></label>
       <button class="primary big">Save, study it first</button>
       <p id="addMsg" class="muted"></p>

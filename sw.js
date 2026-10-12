@@ -1,6 +1,6 @@
 // Offline support. Online: always fetch the current files (so an update never mixes old and new
 // files); the cache is the fallback when offline. Keep CACHE in step with VERSION in js/app.js.
-const CACHE = 'catala-cards-v4';
+const CACHE = 'catala-cards-v5';
 const SHELL = ['./', 'index.html', 'style.css', 'manifest.webmanifest', 'data/cards.json', 'data/context.json',
   'js/app.js', 'js/fsrs.js', 'js/store.js', 'js/deck.js', 'js/audio.js', 'js/translate.js',
   'icons/icon-192.png', 'icons/icon-512.png'];

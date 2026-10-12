@@ -37,6 +37,9 @@ export function launch() {
 export const TRANSLATIONS = {
   'la tovallola': { es: 'La toalla', en: 'The towel', ar: 'المنشفة' },
   'el paraigua': { es: 'El paraguas', en: 'The umbrella', ar: 'المظلة' },
+  // a word with several meanings (alt = other meanings in the translation memory) + its sentence
+  'la cua': { es: '¿Hmm?', en: 'Hmm?', ar: 'همم؟', alt: { es: ['la cola'], en: ['the queue', 'the tail'], ar: ['الطابور', 'الذيل'] } },
+  'El gos mou la cua.': { es: 'El perro mueve la cola.', en: 'The dog wags its tail.', ar: 'الكلب يهز ذيله.' },
   default: { es: 'traducción', en: 'translation', ar: 'ترجمة' },
 };
 
@@ -62,9 +65,10 @@ export async function openApp(ctx, url, { days = 0, width = 412, height = 870, t
       const lang = u.searchParams.get('langpair').split('|')[1];
       page.translateCalls.push({ q, lang });
       if (page.translateMode === 'fail' || translate === 'fail') return req.abort('internetdisconnected');
-      const t = (TRANSLATIONS[q] || TRANSLATIONS.default)[lang];
+      const e = TRANSLATIONS[q] || TRANSLATIONS.default;
+      const matches = ((e.alt || {})[lang] || []).map(translation => ({ segment: q, translation }));
       return req.respond({ status: 200, contentType: 'application/json', headers: { 'access-control-allow-origin': '*' },
-        body: JSON.stringify({ responseData: { translatedText: t }, matches: [] }) });
+        body: JSON.stringify({ responseData: { translatedText: e[lang] }, matches }) });
     }
     req.continue();
   });

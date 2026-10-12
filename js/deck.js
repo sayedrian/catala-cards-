@@ -168,3 +168,33 @@ export function weakest(items, state, n, filter, now = Date.now()) {
   }
   return scored.sort((a, b) => a[0] - b[0]).slice(0, n).map(x => x[1]);
 }
+
+// Find the word inside its sentence so it can be shown in bold. Returns [{t, hit}] pieces.
+// *stars* typed around a word mark it by hand. Otherwise: the whole phrase (without article),
+// else each word of 3+ letters, also in another form (fosc -> foscos, parlar -> parlem).
+const fold = s => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+export function markWord(sentence, word) {
+  const s = String(sentence || '');
+  if (/\*[^*]+\*/.test(s)) return s.split(/\*([^*]+)\*/).map((t, i) => ({ t, hit: i % 2 === 1 })).filter(p => p.t);
+  const plain = s.replace(/\*/g, '');
+  const target = String(word || '').replace(/^(el|la|els|les|un|una|uns|unes)\s+|^l[’']/i, '').trim();
+  if (!plain || !target) return [{ t: plain, hit: false }];
+  const at = fold(plain).indexOf(fold(target));
+  if (at >= 0 && target.includes(' ')) {
+    return [{ t: plain.slice(0, at), hit: false }, { t: plain.slice(at, at + target.length), hit: true },
+      { t: plain.slice(at + target.length), hit: false }].filter(p => p.t);
+  }
+  const words = fold(target).split(/[^\p{L}·]+/u).filter(w => w.length >= 3);
+  const hits = tok => words.some(w => {
+    if (tok === w) return true;
+    const stem = w.slice(0, Math.max(3, w.length - 2));
+    return tok.startsWith(stem) && Math.abs(tok.length - w.length) <= 3;
+  });
+  const out = [];
+  for (const m of plain.matchAll(/([\p{L}·]+)|([^\p{L}·]+)/gu)) {
+    const hit = !!m[1] && hits(fold(m[1]));
+    const last = out[out.length - 1];
+    if (last && last.hit === hit && !hit) last.t += m[0]; else out.push({ t: m[0], hit });
+  }
+  return out;
+}
