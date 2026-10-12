@@ -159,6 +159,32 @@ for x in r:
     if clean(x[0]):
         add("word", x[0], ar=clean(x[1]), en=clean(x[2]), tags=["src:new"])
 
+# CPNL Unit 2 words, each with the sentence from the course activity where it appears (+ ES/EN/AR).
+# A word already in the deck only gets the tag, and the sentence only if it has no example yet,
+# so a sentence and its translations always stay together.
+with open(SRC / "cpnl_u2.tsv", encoding="utf-8") as f:
+    for x in csv.DictReader(f, delimiter="\t"):
+        kind = x["type"]
+        key = ("verb" if kind == "verb" else "lex", norm(x["ca"]))
+        old = items.get(by_key[key]) if key in by_key else None
+        sent = {k: clean(x[k]) for k in ("ex", "exEs", "exEn", "exAr")}
+        if old:
+            old["tags"] = sorted(set(old.get("tags", [])) | {"cpnl:U2", "src:cpnl-u2"})
+            for k in ("es", "en", "ar"):
+                if not old.get(k) and clean(x[k]):
+                    old[k] = clean(x[k])
+            if not old.get("ex"):
+                old.update({k: v for k, v in sent.items() if v})
+            continue
+        conj = part = ger = auto = None
+        if kind == "verb":
+            res = conjugate(x["ca"])
+            if res:
+                conj, part, ger = res
+                auto = True
+        add(kind, x["ca"], es=clean(x["es"]), en=clean(x["en"]), ar=clean(x["ar"]), gender=clean(x["gender"]),
+            **sent, conj=conj, part=part, ger=ger, conjAuto=auto, tags=["cpnl:U2", "src:cpnl-u2"])
+
 # CPNL Elemental 1 course units (optional, derived term lists)
 cpnl = ROOT / "data" / "source" / "cpnl_terms.json"
 if cpnl.exists():

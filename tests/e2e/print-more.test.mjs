@@ -1,6 +1,6 @@
 import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdirSync, writeFileSync } from 'node:fs';
+import { mkdirSync, writeFileSync, readFileSync } from 'node:fs';
 import {
   startServer, launch, newContext, openApp, text, statsOf, savedState, waitSaved, studyCards, tab, OUT, sleep,
 } from './helpers.mjs';
@@ -94,7 +94,7 @@ test('settings: new/day for vocabulary and conjugation, voice speed; saved; app 
   assert.equal(await p.$eval('#sNew', e => e.value), '8');
   assert.equal(await p.$eval('#sConjNew', e => e.value), '3');
   assert.equal(await p.$eval('#sRate', e => e.value), '0.7');
-  assert.match(await text(p, '#about'), /1293 items/);
+  assert.match(await text(p, '#about'), new RegExp(JSON.parse(readFileSync(new URL('../../data/cards.json', import.meta.url), 'utf8')).items.length + ' items'));
   assert.match(await text(p, '#about'), /App version v\d+/);
   await ctx.close();
 });
@@ -123,8 +123,8 @@ test('backup: export file, import merges (newer wins, nothing lost)', async () =
   await studyCards(a, 3, 4);
   await a.click('#endBtn');
   await tab(a, 'add');
-  await a.type('#addForm [name=ca]', 'el paraigua');
-  await a.type('#addForm [name=es]', 'paraguas');
+  await a.type('#addForm [name=ca]', 'la tetera');
+  await a.type('#addForm [name=es]', 'tetera');
   await a.click('#addForm button.primary');
   await waitSaved(a, st => Object.keys(st.added).length === 1);
   const { name, json } = await exportBackup(a);
@@ -159,8 +159,8 @@ test('backup: export file, import merges (newer wins, nothing lost)', async () =
   learning += (await statsOf(b)).learning;
   assert.equal(learning, union.size, 'vocabulary + conjugation stats add up');
   await tab(b, 'words');
-  await b.type('#search', 'paraigua');
-  assert.match(await text(b, '#wordList'), /el paraigua/, 'added word visible right after import');
+  await b.type('#search', 'tetera');
+  assert.match(await text(b, '#wordList'), /la tetera/, 'added word visible right after import');
 
   // Older copy of a card does not overwrite a newer one
   const old = JSON.parse(json);

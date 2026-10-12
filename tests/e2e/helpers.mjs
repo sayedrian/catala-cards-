@@ -36,7 +36,7 @@ export function launch() {
 
 export const TRANSLATIONS = {
   'la tovallola': { es: 'La toalla', en: 'The towel', ar: 'المنشفة' },
-  'el paraigua': { es: 'El paraguas', en: 'The umbrella', ar: 'المظلة' },
+  'la tetera': { es: 'La tetera', en: 'The teapot', ar: 'إبريق الشاي' },
   // a word with several meanings (alt = other meanings in the translation memory) + its sentence
   'la cua': { es: '¿Hmm?', en: 'Hmm?', ar: 'همم؟', alt: { es: ['la cola'], en: ['the queue', 'the tail'], ar: ['الطابور', 'الذيل'] } },
   'El gos mou la cua.': { es: 'El perro mueve la cola.', en: 'The dog wags its tail.', ar: 'الكلب يهز ذيله.' },

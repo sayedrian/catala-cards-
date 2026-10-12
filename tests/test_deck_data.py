@@ -12,7 +12,7 @@ CARDS = ROOT / "data" / "cards.json"
 PLACEHOLDERS = {"—", "-", "–", "exemple pendent de revisió.", "revisar model irregular."}
 TENSES = {"present", "perfet", "imperfet", "perifrastic", "futur", "condicional", "subjuntiu", "imperatiu"}
 FIELDS = {"id", "type", "ca", "es", "en", "ar", "ex", "pron", "gender", "unit", "cat", "notes",
-          "tags", "conj", "conjAuto", "ger", "part"}
+          "tags", "conj", "conjAuto", "ger", "part", "exEs", "exEn", "exAr"}
 
 
 class DeckData(unittest.TestCase):

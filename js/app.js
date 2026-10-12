@@ -7,7 +7,7 @@ import {
 import { speak, hasCatalanVoice, canRecord, startRecording, stopRecording, isRecording, play } from './audio.js';
 import { suggestInContext, LANGS } from './translate.js';
 
-export const VERSION = 'v5';
+export const VERSION = 'v6';
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const norm = s => String(s || '').toLowerCase().replace(/'/g, '’').replace(/\s+/g, ' ').trim();
